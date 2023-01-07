@@ -47,7 +47,20 @@ const Create = () => {
             value={start_address}
             onChange={(e) => setStart_address(e.target.value)}
           />
-          <Form.Text muted>Enter your End Address</Form.Text>
+          <Form.Label htmlFor="startCity">Start City</Form.Label>
+          <Form.Control
+            type="text"
+            id="startCity"
+            value={start_city}
+            onChange={(e) => setStart_city(e.target.value)}
+          />
+          <Form.Label htmlFor="startZip">Start ZIP</Form.Label>
+          <Form.Control
+            type="text"
+            id="startZip"
+            value={start_zip}
+            onChange={(e) => setStart_zip(e.target.value)}
+          />
           <Form.Label htmlFor="endAddress">End Address</Form.Label>
           <Form.Control
             type="text"
@@ -55,7 +68,34 @@ const Create = () => {
             value={end_address}
             onChange={(e) => setEnd_address(e.target.value)}
           />
-          <Form.Text muted>Enter your End Address</Form.Text>
+          <Form.Label htmlFor="endCity">End City</Form.Label>
+          <Form.Control
+            type="text"
+            id="endCity"
+            value={end_city}
+            onChange={(e) => setEnd_city(e.target.value)}
+          />
+          <Form.Label htmlFor="endZip">End ZIP</Form.Label>
+          <Form.Control
+            type="text"
+            id="endZip"
+            value={end_zip}
+            onChange={(e) => setEnd_zip(e.target.value)}
+          />
+          <Form.Label htmlFor="endZip">Date</Form.Label>
+          <Form.Control
+            type="text"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <Form.Label htmlFor="endZip">Time</Form.Label>
+          <Form.Control
+            type="text"
+            id="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
           {/* <Button variant="secondary" type="submit"></Button> */}
           <Button variant="primary" type="submit">
             Submit
