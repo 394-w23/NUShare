@@ -37,7 +37,7 @@ const Create = () => {
         navigate("/")
     }
   return (
-    <div>
+    <div class = "form">
       <h1>NUShare</h1>
       <Form onSubmit={handleSubmit}>
           <Form.Label htmlFor="startAddress">Start Address</Form.Label>

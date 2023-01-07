@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import Button from 'react-bootstrap/Button';
 
 const Ride = ({ride}) => {
   return (
@@ -19,6 +20,7 @@ const Ride = ({ride}) => {
             <Card.Title>
               Seats available: {ride.available_seats}/3
             </Card.Title>
+            <Button class="join">Join</Button>
           </Card.Text>
         </Card.Body>
       </Card>
