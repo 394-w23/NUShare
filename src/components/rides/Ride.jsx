@@ -6,14 +6,19 @@ const Ride = ({ride}) => {
     <div>
       <Card>
         <Card.Body>
-          <Card.Title>
-            Trip to {ride.end.address}
-          </Card.Title>
-          <Card.Title>
-            Starting from {ride.start.address}
-          </Card.Title>
           <Card.Text>
-            Number of seats available: {ride.available_seats}
+            <Card.Title>
+              Trip to {ride.end.address}, {ride.end.city}, {ride.end.zip}
+            </Card.Title>
+            <Card.Title>
+              Starting from {ride.start.address}, {ride.start.city}, {ride.start.zip}
+            </Card.Title>
+            <Card.Title>
+              On {ride.date} at {ride.time}
+            </Card.Title>
+            <Card.Title>
+              Seats available: {ride.available_seats}/3
+            </Card.Title>
           </Card.Text>
         </Card.Body>
       </Card>
