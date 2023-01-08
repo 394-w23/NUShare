@@ -82,16 +82,16 @@ const Create = () => {
             value={end_zip}
             onChange={(e) => setEnd_zip(e.target.value)}
           />
-          <Form.Label htmlFor="endZip">Date</Form.Label>
+          <Form.Label htmlFor="date">Date</Form.Label>
           <Form.Control
-            type="text"
+            type="date"
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <Form.Label htmlFor="endZip">Time</Form.Label>
+          <Form.Label htmlFor="time">Time</Form.Label>
           <Form.Control
-            type="text"
+            type="time"
             id="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
