@@ -36,12 +36,14 @@ const Create = () => {
         console.log(ride);
         navigate("/")
     }
+  
   return (
     <div class = "form">
       <h1>NUShare</h1>
       <Form onSubmit={handleSubmit}>
           <Form.Label htmlFor="startAddress">Start Address</Form.Label>
           <Form.Control
+            required
             type="text"
             id="startAddress"
             value={start_address}
@@ -49,6 +51,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="startCity">Start City</Form.Label>
           <Form.Control
+            required
             type="text"
             id="startCity"
             value={start_city}
@@ -56,6 +59,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="startZip">Start ZIP</Form.Label>
           <Form.Control
+            required
             type="text"
             id="startZip"
             value={start_zip}
@@ -63,6 +67,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="endAddress">End Address</Form.Label>
           <Form.Control
+            required
             type="text"
             id="endAddress"
             value={end_address}
@@ -70,6 +75,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="endCity">End City</Form.Label>
           <Form.Control
+            required
             type="text"
             id="endCity"
             value={end_city}
@@ -77,6 +83,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="endZip">End ZIP</Form.Label>
           <Form.Control
+            required
             type="text"
             id="endZip"
             value={end_zip}
@@ -84,6 +91,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="date">Date</Form.Label>
           <Form.Control
+            required
             type="date"
             id="date"
             value={date}
@@ -91,6 +99,7 @@ const Create = () => {
           />
           <Form.Label htmlFor="time">Time</Form.Label>
           <Form.Control
+            required
             type="time"
             id="time"
             value={time}
