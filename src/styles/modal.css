@@ -1,13 +1,11 @@
-html,
-body {
-  height: 100%;
-}
+/*html,
 body {
   background: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}*/
+
 .modal {
   width: 500px;
   background: white;
@@ -19,6 +17,7 @@ body {
   opacity: 1;
   visibility: visible;
 }
+
 .modal.off {
   opacity: 0;
   visibility: hidden;

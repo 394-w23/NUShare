@@ -1,0 +1,29 @@
+.navbar {
+  background-color: #1e90ff;
+}
+
+.navbar-container {
+  align-content: center;
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.create-ride-title {
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.create-ride-title:hover,
+.navbar-brand:hover {
+  color: lightgrey;
+}
+
+.sign-button {
+  border: 2px solid white;
+  color: "white";
+}

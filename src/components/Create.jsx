@@ -1,107 +1,198 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useDbUpdate } from "../utils/firebase";
-//import { useProfile } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 
-const Create = () => {
-    //const [user] = useProfile()
-    const [updateData] = useDbUpdate("/");
-    const navigate = useNavigate()
-    
-    const [start_address, setStart_address] = useState("");
-    const [start_city, setStart_city] = useState("");
-    const [start_zip, setStart_zip] = useState("");
-    const [end_address, setEnd_address] = useState("");
-    const [end_city, setEnd_city] = useState("");
-    const [end_zip, setEnd_zip] = useState("");
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const ride = {
-                start: {address: start_address, 
-                        city: start_city,
-                        zip: start_zip},
-                end: {address: end_address, 
-                      city: end_city,
-                      zip: end_zip},
-                date: date,
-                time: time,
-                available_seats: 3,
-        }
-        updateData({ ["/rides/" + uuidv4()]: ride });
-        console.log(ride);
-        navigate("/")
+const Create = () => {
+  const [updateData] = useDbUpdate("/");
+  const navigate = useNavigate();
+
+  const [checkbox, setCheckbox] = useState("");
+  const [startAddress, setStartAddress] = useState("");
+  const [startCity, setStartCity] = useState("");
+  const [startZip, setStartZip] = useState("");
+  const [endAddress, setEndAddress] = useState("");
+  const [endCity, setEndCity] = useState("");
+  const [endZip, setEndZip] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const ride = {
+      start: { address: startAddress, city: startCity, zip: startZip },
+      end: { address: endAddress, city: endCity, zip: endZip },
+      date: date,
+      time: time,
+      availableSeats: 3,
+    };
+    updateData({ ["/rides/" + uuidv4()]: ride });
+    navigate("/");
+  };
+
+  const handleCheckbox = (tag) => {
+    if (tag === "to") {
+      setCheckbox("to");
+      setEndAddress("10000 W Balmoral Ave");
+      setEndCity("Chicago");
+      setEndZip("60666");
+      setStartAddress("");
+      setStartCity("");
+      setStartZip("");
+    } else if (tag === "from") {
+      setCheckbox("from");
+      setEndAddress("");
+      setEndCity("");
+      setEndZip("");
+      setStartAddress("10000 W Balmoral Ave");
+      setStartCity("Chicago");
+      setStartZip("60666");
     }
+  };
+
   return (
-    <div class = "form">
-      <h1>NUShare</h1>
+    <div>
+      <div className="create-ride-header">
+        <h3 className="mb-3">Create a Ride</h3>
+      </div>
       <Form onSubmit={handleSubmit}>
-          <Form.Label htmlFor="startAddress">Start Address</Form.Label>
+        <Form.Text className="text-muted me-4">
+          Is your ride to or from the airport?
+        </Form.Text>
+        <Form.Check
+          inline
+          label="To Airport"
+          name="group1"
+          type="radio"
+          onClick={() => handleCheckbox("to")}
+        />
+        <Form.Check
+          inline
+          label="From Airport"
+          name="group1"
+          type="radio"
+          onClick={() => handleCheckbox("from")}
+        />
+        <hr className="mt-3 mb-3" />
+        <Form.Group className="mb-3">
+          <Form.Label>Start Address</Form.Label>
           <Form.Control
             type="text"
-            id="startAddress"
-            value={start_address}
-            onChange={(e) => setStart_address(e.target.value)}
+            placeholder="Enter your starting address"
+            name="startAddress"
+            value={startAddress}
+            onChange={(e) => setStartAddress(e.target.value)}
+            disabled={checkbox === "from"}
           />
-          <Form.Label htmlFor="startCity">Start City</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your starting address for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Start City</Form.Label>
           <Form.Control
             type="text"
-            id="startCity"
-            value={start_city}
-            onChange={(e) => setStart_city(e.target.value)}
+            placeholder="Enter your starting city"
+            name="startCity"
+            value={startCity}
+            onChange={(e) => setStartCity(e.target.value)}
+            disabled={checkbox === "from"}
           />
-          <Form.Label htmlFor="startZip">Start ZIP</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your starting city for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Start Zip</Form.Label>
           <Form.Control
             type="text"
-            id="startZip"
-            value={start_zip}
-            onChange={(e) => setStart_zip(e.target.value)}
+            placeholder="Enter your starting Zip code"
+            name="startZip"
+            value={startZip}
+            onChange={(e) => setStartZip(e.target.value)}
+            disabled={checkbox === "from"}
           />
-          <Form.Label htmlFor="endAddress">End Address</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your starting Zip code for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Destination Address</Form.Label>
           <Form.Control
             type="text"
-            id="endAddress"
-            value={end_address}
-            onChange={(e) => setEnd_address(e.target.value)}
+            placeholder="Enter your destination address"
+            name="endAddress"
+            value={endAddress}
+            onChange={(e) => setEndAddress(e.target.value)}
+            disabled={checkbox === "to"}
           />
-          <Form.Label htmlFor="endCity">End City</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your destination address for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Destination City</Form.Label>
           <Form.Control
             type="text"
-            id="endCity"
-            value={end_city}
-            onChange={(e) => setEnd_city(e.target.value)}
+            placeholder="Enter your destination city"
+            name="endCity"
+            value={endCity}
+            onChange={(e) => setEndCity(e.target.value)}
+            disabled={checkbox === "to"}
           />
-          <Form.Label htmlFor="endZip">End ZIP</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your destination city for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Destination Zip</Form.Label>
           <Form.Control
             type="text"
-            id="endZip"
-            value={end_zip}
-            onChange={(e) => setEnd_zip(e.target.value)}
+            placeholder="Enter your destination Zip code"
+            name="endZip"
+            value={endZip}
+            onChange={(e) => setEndZip(e.target.value)}
+            disabled={checkbox === "to"}
           />
-          <Form.Label htmlFor="date">Date</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your destination Zip code for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Date</Form.Label>
           <Form.Control
             type="date"
-            id="date"
+            name="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <Form.Label htmlFor="time">Time</Form.Label>
+          <Form.Text className="text-muted">
+            Enter your initial date for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Time</Form.Label>
           <Form.Control
             type="time"
-            id="time"
+            name="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
-          {/* <Button variant="secondary" type="submit"></Button> */}
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-     </Form>
-    
+          <Form.Text className="text-muted">
+            Enter your initial time for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Button
+          className="mt-3 w-100 create-ride-button"
+          variant="info"
+          type="submit"
+        >
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 };
