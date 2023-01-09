@@ -86,6 +86,7 @@ const Create = () => {
             value={startAddress}
             onChange={(e) => setStartAddress(e.target.value)}
             disabled={checkbox === "from"}
+            required
           />
           <Form.Text className="text-muted">
             Enter your starting address for the ride pickup
@@ -100,6 +101,7 @@ const Create = () => {
             value={startCity}
             onChange={(e) => setStartCity(e.target.value)}
             disabled={checkbox === "from"}
+            required
           />
           <Form.Text className="text-muted">
             Enter your starting city for the ride pickup
@@ -114,6 +116,7 @@ const Create = () => {
             value={startZip}
             onChange={(e) => setStartZip(e.target.value)}
             disabled={checkbox === "from"}
+            required
           />
           <Form.Text className="text-muted">
             Enter your starting Zip code for the ride pickup
@@ -128,6 +131,7 @@ const Create = () => {
             value={endAddress}
             onChange={(e) => setEndAddress(e.target.value)}
             disabled={checkbox === "to"}
+            required
           />
           <Form.Text className="text-muted">
             Enter your destination address for the ride pickup
@@ -142,6 +146,7 @@ const Create = () => {
             value={endCity}
             onChange={(e) => setEndCity(e.target.value)}
             disabled={checkbox === "to"}
+            required
           />
           <Form.Text className="text-muted">
             Enter your destination city for the ride pickup
@@ -156,6 +161,7 @@ const Create = () => {
             value={endZip}
             onChange={(e) => setEndZip(e.target.value)}
             disabled={checkbox === "to"}
+            required
           />
           <Form.Text className="text-muted">
             Enter your destination Zip code for the ride pickup
