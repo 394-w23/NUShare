@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 import { signInWithGoogle, signOut } from "../../utils/firebase";
+import { useProfile } from "../../utils/userProfile";
 
 const SignInButton = () => (
   <button
@@ -25,7 +26,7 @@ const SignOutButton = () => (
 );
 
 const Header = () => {
-  const user = undefined;
+  const [user] = useProfile();
   const navigate = useNavigate();
 
   return (
@@ -36,7 +37,7 @@ const Header = () => {
             NUShare
           </div>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          {!user && (
+          {user && (
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <div
@@ -47,16 +48,6 @@ const Header = () => {
                 </div>
               </Nav>
             </Navbar.Collapse>
-          )}
-          {user && (
-            <Nav className="me-auto">
-              <Nav.Link
-                href={`/user/${user.user?.uid}`}
-                style={{ color: "white" }}
-              >
-                Hello, {user.user.displayName}
-              </Nav.Link>
-            </Nav>
           )}
           {user ? <SignOutButton /> : <SignInButton />}
         </Container>

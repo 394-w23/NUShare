@@ -5,8 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useProfile } from "../utils/userProfile";
 
 const Create = () => {
+  const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
   const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ const Create = () => {
       end: { address: endAddress, city: endCity, zip: endZip },
       date: date,
       time: time,
+      passengers: [user.uid],
       availableSeats: 3,
     };
     updateData({ ["/rides/" + uuidv4()]: ride });

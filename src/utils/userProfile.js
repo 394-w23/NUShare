@@ -7,9 +7,13 @@ export const useProfile = () => {
   const [users, error, loading] = useDbData("/users/");
 
   useEffect(() => {
-    if (user && !error && !loading && !Object.keys(users).includes(user.uid)) {
+    if (user && !error && !loading) {
       updateUser({
-        [user.uid]: { displayName: user.displayName, email: user.email },
+        [user.uid]: {
+          displayName: user.displayName,
+          email: user.email,
+          profilePic: user.photoURL,
+        },
       });
     }
   }, [error, loading, user, updateUser]);

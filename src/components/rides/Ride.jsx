@@ -1,9 +1,12 @@
 import React from "react";
 import { useDbUpdate } from "../../utils/firebase";
+import { signInWithGoogle } from "../../utils/firebase";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useProfile } from "../../utils/userProfile";
 
 const Ride = ({ id, ride }) => {
+  const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
 
   const handleJoin = () => {
@@ -28,13 +31,21 @@ const Ride = ({ id, ride }) => {
               On {ride.date} at {ride.time}
             </Card.Title>
             <Card.Title>Seats available: {ride.availableSeats}/3</Card.Title>
-            <Button
-              class="join"
-              onClick={handleJoin}
-              disabled={ride.availableSeats === 0}
-            >
-              Join
-            </Button>
+            {user && user.uid === ride.creator && (
+              <Button class="join" variant="danger">
+                Cancel
+              </Button>
+            )}
+            {user && user.uid !== ride.creator && ride.availableSeats > 0 && (
+              <Button class="join" onClick={handleJoin}>
+                Join
+              </Button>
+            )}
+            {!user && ride.availableSeats > 0 && (
+              <Button class="join" onClick={signInWithGoogle}>
+                Join
+              </Button>
+            )}
           </Card.Text>
         </Card.Body>
       </Card>
