@@ -1,8 +1,17 @@
 import React from "react";
+import { useDbUpdate } from "../../utils/firebase";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const Ride = ({ ride }) => {
+const Ride = ({ id, ride }) => {
+  const [updateData] = useDbUpdate("/");
+
+  const handleJoin = () => {
+    const seats = ride.availableSeats;
+    const updatedRide = { ...ride, availableSeats: seats - 1 };
+    updateData({ ["/rides/" + id]: updatedRide });
+  };
+
   return (
     <div>
       <Card>
@@ -19,7 +28,13 @@ const Ride = ({ ride }) => {
               On {ride.date} at {ride.time}
             </Card.Title>
             <Card.Title>Seats available: {ride.availableSeats}/3</Card.Title>
-            <Button class="join">Join</Button>
+            <Button
+              class="join"
+              onClick={handleJoin}
+              disabled={ride.availableSeats === 0}
+            >
+              Join
+            </Button>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -41,7 +41,9 @@ const Home = () => {
     <div>
       {typeof rides != "undefined" &&
         rides != null &&
-        Object.values(rides).map((ride) => <Ride ride={ride} />)}
+        Object.entries(rides).map(([key, value]) => (
+          <Ride ride={value} id={key} />
+        ))}
     </div>
   );
 };
