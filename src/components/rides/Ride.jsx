@@ -18,15 +18,18 @@ const Ride = ({ id, ride }) => {
   };
 
   const handleLeave = (userId) => {
-    const seats = ride.availableSeats;
+    const seats = ride.availableSeats + 1;
     const updatedPassenger = ride.passengers;
     for (var i = 0; i < updatedPassenger.length; i++){
       if (updatedPassenger[i] == userId) {
         updatedPassenger.splice(i, 1);
       }
     }
-    const updatedRide = { ...ride, availableSeats: seats + 1, passengers: updatedPassenger };
-    updateData({ ["/rides/" + id]: updatedRide });
+    const updatedRide = { ...ride, availableSeats: seats, passengers: updatedPassenger };
+    updateData({ ["/rides/" + id]: updatedRide })
+    if (seats === 4){
+      updateData({ ["/rides/" + id]: null });
+    } 
   };
 
   return (
