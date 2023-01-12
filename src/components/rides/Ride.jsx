@@ -9,9 +9,23 @@ const Ride = ({ id, ride }) => {
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
 
-  const handleJoin = () => {
+  const handleJoin = (userId) => {
     const seats = ride.availableSeats;
-    const updatedRide = { ...ride, availableSeats: seats - 1 };
+    const updatedPassenger = ride.passengers;
+    updatedPassenger.push(userId)
+    const updatedRide = { ...ride, availableSeats: seats - 1, passengers: updatedPassenger };
+    updateData({ ["/rides/" + id]: updatedRide });
+  };
+
+  const handleLeave = (userId) => {
+    const seats = ride.availableSeats;
+    const updatedPassenger = ride.passengers;
+    for (var i = 0; i < updatedPassenger.length; i++){
+      if (updatedPassenger[i] == userId) {
+        updatedPassenger.splice(i, 1);
+      }
+    }
+    const updatedRide = { ...ride, availableSeats: seats + 1, passengers: updatedPassenger };
     updateData({ ["/rides/" + id]: updatedRide });
   };
 
@@ -30,23 +44,23 @@ const Ride = ({ id, ride }) => {
             <Card.Title>
               On {ride.date} at {ride.time}
             </Card.Title>
-            <Card.Title>Seats available: {ride.availableSeats}/3</Card.Title>
-            {user && user.uid === ride.creator && (
-              <Button class="join" variant="danger">
-                Cancel
+            <Card.Title>Seats available: {ride.availableSeats}/4</Card.Title>
+            {user && ride.passengers && ride.passengers.includes(user.uid) && (
+              <Button class="join" variant="danger" onClick={() => handleLeave(user.uid)}>
+                Leave
               </Button>
             )}
-            {user && user.uid !== ride.creator && ride.availableSeats > 0 && (
-              <Button class="join" onClick={handleJoin}>
+            {user && ride.passengers && !ride.passengers.includes(user.uid) && ride.availableSeats > 0 && (
+              <Button class="join" onClick={() => handleJoin(user.uid)}>
                 Join
               </Button>
             )}
-            {!user && ride.availableSeats > 0 && (
+            {!user && ride.passengers && ride.availableSeats > 0 && (
               <Button class="join" onClick={signInWithGoogle}>
                 Join
               </Button>
             )}
-          </Card.Text>
+          </Card.Text> 
         </Card.Body>
       </Card>
     </div>
