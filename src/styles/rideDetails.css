@@ -1,0 +1,35 @@
+.col-8 {
+    border-right: 0.5px solid gray;
+  }
+  
+  .card .row .profilePics {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 5px solid white;
+    width: auto;
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+  
+  .profileImages {
+    width: initial;
+    height: auto;
+  }
+
+.passengerCol {
+    display: flex;
+    padding: 15px;
+}
+
+.profileInfo {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.addressContainer {
+    text-align: center;
+}
+  

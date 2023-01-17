@@ -1,5 +1,6 @@
 import React from "react";
 import { useDbUpdate, useDbData } from "../../utils/firebase";
+import { useNavigate } from "react-router-dom";
 import { signInWithGoogle } from "../../utils/firebase";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -10,6 +11,7 @@ const Ride = ({ id, ride }) => {
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
   const [users, errorUsers, isLoadingUsers] = useDbData("/users");
+  const navigate = useNavigate();
 
   const handleJoin = (userId) => {
     const seats = ride.availableSeats;
@@ -84,6 +86,13 @@ const Ride = ({ id, ride }) => {
                 <div class="col-4">
                   <Card className="profilePics">
                     <div className="row">{retrieveProfilePics()}</div>
+                  </Card>
+                  <Card className="profilePics">
+                    <div className="row"
+                        onClick={() => navigate("/rideDetails", {state: {id: user.uid, ride: ride}})}
+                      >
+                        Check Ride details
+                      </div>
                   </Card>
                   <Card>
                     {user &&
