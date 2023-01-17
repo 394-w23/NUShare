@@ -1,0 +1,74 @@
+.ride-header {
+  font-size: 26px;
+}
+
+.ride-pickup-title,
+.ride-passengers-title {
+  font-size: 17px;
+}
+
+.ride-passengers-title {
+  font-weight: bold;
+}
+
+.ride-pickup-title span {
+  font-weight: bold;
+}
+
+.ride-pickup-date,
+.ride-pickup-time,
+.ride-available-seats {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.ride-pickup-date span,
+.ride-pickup-time span,
+.ride-available-seats span {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.ride-passengers-title {
+  margin-top: -15px;
+}
+
+.ride-passengers-grid {
+  display: flex;
+}
+
+.ride-passengers-container {
+  display: block;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.ride-passengers-image img {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+}
+
+.ride-passengers-name {
+  font-size: 10px;
+}
+
+.ride-button {
+  margin-right: 8px;
+}
+
+.ride-leave-button,
+.ride-join-button,
+.ride-details-button {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+}
+
+.ride-button-icon {
+  margin-right: 3px;
+}
