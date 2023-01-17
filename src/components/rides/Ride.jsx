@@ -1,6 +1,11 @@
 import React from "react";
 import { useDbUpdate, useDbData } from "../../utils/firebase";
+<<<<<<< HEAD
 import { useProfile } from "../../utils/userProfile";
+=======
+import { useNavigate } from "react-router-dom";
+import { signInWithGoogle } from "../../utils/firebase";
+>>>>>>> 31a930c (Ride details)
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import moment from "moment";
@@ -12,6 +17,7 @@ const Ride = ({ id, ride }) => {
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
   const [users, errorUsers, isLoadingUsers] = useDbData("/users");
+  const navigate = useNavigate();
 
   const startAddress =
     `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}` ===
@@ -103,6 +109,7 @@ const Ride = ({ id, ride }) => {
                     {users[userId].displayName}
                   </div>
                 </div>
+<<<<<<< HEAD
               ))}
             </Card.Text>
           </Card.Body>
@@ -146,6 +153,53 @@ const Ride = ({ id, ride }) => {
               )}
           </Card.Footer>
         </Card>
+=======
+                <div class="col-4">
+                  <Card className="profilePics">
+                    <div className="row">{retrieveProfilePics()}</div>
+                  </Card>
+                  <Card className="profilePics">
+                    <div className="row"
+                        onClick={() => navigate("/rideDetails", {state: {id: user.uid, ride: ride}})}
+                      >
+                        Check Ride details
+                      </div>
+                  </Card>
+                  <Card>
+                    {user &&
+                      ride.passengers &&
+                      ride.passengers.includes(user.uid) && (
+                        <Button
+                          class="join"
+                          variant="danger"
+                          onClick={() => handleLeave(user.uid)}
+                        >
+                          Leave
+                        </Button>
+                      )}
+                    {user &&
+                      ride.passengers &&
+                      !ride.passengers.includes(user.uid) &&
+                      ride.availableSeats > 0 && (
+                        <Button
+                          class="join"
+                          onClick={() => handleJoin(user.uid)}
+                        >
+                          Join
+                        </Button>
+                      )}
+                    {!user && ride.passengers && ride.availableSeats > 0 && (
+                      <Button class="join" onClick={signInWithGoogle}>
+                        Join
+                      </Button>
+                    )}
+                  </Card>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+>>>>>>> 31a930c (Ride details)
       )}
     </div>
   );
