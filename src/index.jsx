@@ -7,6 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./styles/header.css";
 import "./styles/modal.css";
 import "./styles/create.css";
+import "./styles/ride.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

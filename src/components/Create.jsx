@@ -199,7 +199,7 @@ const Create = () => {
           variant="info"
           type="submit"
         >
-          Submit
+          Create Ride
         </Button>
       </Form>
     </div>
