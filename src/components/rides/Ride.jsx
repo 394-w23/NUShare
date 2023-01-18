@@ -76,15 +76,15 @@ const Ride = ({ id, ride }) => {
             <Card.Text className="ride-pickup-date text-muted">
               <FcPlanner size={28} />
               <span>Pickup Date:</span>{" "}
-              {moment(ride.date).format("dddd, MMM D YYYY")}
+              <p>&nbsp;</p>{moment(ride.date).format("dddd, MMM D YYYY")}
             </Card.Text>
             <Card.Text className="ride-pickup-time text-muted">
               <FcClock size={28} />
-              <span>Pickup Time:</span> {ride.time}
+              <span>Pickup Time:</span> <p>&nbsp;</p>{ride.time}
             </Card.Text>
             <Card.Text className="ride-available-seats text-muted">
               <FcAutomotive size={28} />
-              <span>Seats available:</span> {ride.availableSeats} / 4
+              <span>Seats available:</span> <p>&nbsp;</p>{ride.availableSeats} / 4
             </Card.Text>
             <hr />
             <Card.Text className="ride-passengers-title text-muted">
