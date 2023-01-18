@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Ride from "../components/rides/Ride";
+import { useDbUpdate } from "../utils/firebase";
 import { useDbData } from "../utils/firebase";
 
 const Home = () => {
   const [rides] = useDbData("/rides");
+
+  const [updateData] = useDbUpdate("/");
 
   let rideArray = [];
 
@@ -17,9 +20,10 @@ const Home = () => {
       1 +
       "-" +
       objectDate.getDate();
+    
     for (let i = 0; i < rideArray.length; i++) {
       if (rideArray[i][1].date < today) {
-        // remove from db
+        updateData({ ["/rides/" + rideArray[i][0]]: null });
       }
     }
 
