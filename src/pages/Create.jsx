@@ -25,7 +25,17 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
+    let objectDate = new Date();
+    var today =
+      objectDate.getFullYear() +
+      "-" +
+      objectDate.getMonth() +
+      1 +
+      "-" +
+      objectDate.getDate();
+    if (date < today ){
+      setError("Choose an upcoming date.")
+    } else if (
       !startAddress ||
       !startCity ||
       !startZip ||
