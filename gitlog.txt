@@ -1,0 +1,238 @@
+commit 378f2551f8f1e94a0a78d2219f91f1df9a43962b
+Author: Anshul Hajare <anshulhajare2024@u.northwestern.edu>
+Date:   Tue Jan 17 18:26:26 2023 -0600
+
+    Fixed merge conflicts
+
+M	src/components/rides/Ride.jsx
+M	src/styles/rideDetails.css
+
+commit 1fe604e4fd9c871fa09f515b54b57d0d88ea9f0d
+Author: Anshul Hajare <anshulhajare2024@u.northwestern.edu>
+Date:   Tue Jan 17 18:14:48 2023 -0600
+
+    CSS update for ride details
+
+M	src/styles/rideDetails.css
+
+commit f3bd2d7c16eb85dd122ecf19eb2d271cbb90b639
+Author: Anshul Hajare <anshulhajare2024@u.northwestern.edu>
+Date:   Tue Jan 17 18:13:27 2023 -0600
+
+    Updated ride details
+
+M	src/components/rides/RideDetails.jsx
+
+commit 5ff6b8a9f05f0adfe42e51d3a9f06fc99cc313a4
+Author: Anshul Hajare <anshulhajare2024@u.northwestern.edu>
+Date:   Tue Jan 17 01:28:48 2023 -0600
+
+    Ride details
+
+M	src/App.jsx
+M	src/components/rides/Ride.jsx
+A	src/components/rides/RideDetails.jsx
+A	src/styles/rideDetails.css
+
+commit 89c2d30572f16a89edd2bacfec1054f09394ce1f
+Author: Camilo <camilochafloque@gmail.com>
+Date:   Tue Jan 17 16:37:43 2023 -0600
+
+    Refactored styles for Ride cards on Home screen
+
+M	package-lock.json
+M	package.json
+M	src/components/Create.jsx
+M	src/components/rides/Ride.jsx
+M	src/index.jsx
+M	src/pages/Home.jsx
+D	src/styles/home.css
+A	src/styles/ride.css
+D	src/styles/rides.css
+
+commit 5bd1ba7f26ebb1f8674e687ebf02904de639fce5
+Author: Derex Wangmang <66037338+derexwangmang@users.noreply.github.com>
+Date:   Sat Jan 14 16:01:41 2023 -0600
+
+    Added profile pictures
+
+M	src/components/rides/Ride.jsx
+A	src/styles/rides.css
+
+commit 7924c92084b9d67228766653fa69432a4a525c14
+Author: Celinadhh <celinaszhao@gmail.com>
+Date:   Wed Jan 11 18:17:13 2023 -0600
+
+    last person to leave ride deletes it
+
+M	src/components/rides/Ride.jsx
+
+commit fbaad71acb8807472459b7eaac0de29a62259b3b
+Author: Celinadhh <celinaszhao@gmail.com>
+Date:   Wed Jan 11 18:03:16 2023 -0600
+
+    basic leave/join button w passengers array
+
+M	src/components/rides/Ride.jsx
+
+commit df2eac2c10da6a1492f144cb4741b640456dc772
+Author: Camilo <camilochafloque@gmail.com>
+Date:   Tue Jan 10 19:29:08 2023 -0600
+
+    Changed join button display rules
+
+R088	dist/assets/index-5e4ee683.js	dist/assets/index-3a6cc867.js
+M	dist/index.html
+M	src/components/Create.jsx
+M	src/components/layout/Header.jsx
+M	src/components/rides/Ride.jsx
+M	src/pages/Home.jsx
+M	src/utils/userProfile.js
+
+commit 85cc19ae503f08b20c283f1066abe6117f829d11
+Author: Camilo <camilochafloque@gmail.com>
+Date:   Tue Jan 10 18:39:00 2023 -0600
+
+    Join ride functionality
+
+A	dist/assets/bootstrap-icons-966620f9.woff2
+A	dist/assets/bootstrap-icons-c6569d46.woff
+A	dist/assets/index-5e4ee683.js
+D	dist/assets/index-7bce8228.css
+D	dist/assets/index-a9354d0f.js
+A	dist/assets/index-f0f0fcb4.css
+D	dist/assets/logo-ecc203fb.svg
+M	dist/index.html
+M	src/components/rides/Ride.jsx
+M	src/pages/Home.jsx
+
+commit 91e45f4660686d3f616aaceb9922e9adca51e11f
+Author: Camilo <camilochafloque@gmail.com>
+Date:   Mon Jan 9 13:44:13 2023 -0600
+
+    Finished Create Ride form and added styles and Header
+
+D	src/App.css
+M	src/App.jsx
+M	src/components/Create.jsx
+M	src/components/layout/Header.jsx
+M	src/components/rides/Ride.jsx
+D	src/index.css
+M	src/index.jsx
+M	src/pages/Home.jsx
+A	src/styles/create.css
+A	src/styles/header.css
+R096	src/components/Modal.css	src/styles/modal.css
+
+commit 91a1d422d415295c8912abe6dd1de0b617a568c6
+Author: Celinadhh <celinaszhao@gmail.com>
+Date:   Mon Jan 9 12:55:20 2023 -0600
+
+    form requiring inputs to all fields
+
+M	src/components/Create.jsx
+
+commit 84a50f83781d85779b60b427ecabc81488c69355
+Author: Celina Zhao <celinazhao@MacBook-Pro-373.local>
+Date:   Sat Jan 7 20:57:28 2023 -0600
+
+    date and time
+
+M	src/components/Create.jsx
+
+commit c94e5c55eefabaa3f34af04451b31f27a869f50f
+Author: Celina Zhao <celinazhao@MacBook-Pro-373.local>
+Date:   Sat Jan 7 17:03:47 2023 -0600
+
+    updated css home page
+
+M	src/App.css
+M	src/components/Create.jsx
+M	src/components/rides/Ride.jsx
+
+commit a03c6b1cea8ffe43e180b85a01330ede7b172769
+Author: Celina Zhao <celinazhao@MacBook-Pro-373.local>
+Date:   Fri Jan 6 22:21:09 2023 -0600
+
+    ride card including all info
+
+M	src/components/rides/Ride.jsx
+
+commit af5c6289340897c8d9a4bc253ae9cdf15f9e6a1e
+Author: Celina Zhao <celinazhao@dhcp-10-105-102-15.wireless.northwestern.private>
+Date:   Fri Jan 6 20:01:40 2023 -0600
+
+    completed create form
+
+M	package-lock.json
+M	src/components/Create.jsx
+
+commit 6b8542f83f4b892891355b577bdf842d247442b3
+Author: tanaysrivastav1 <73322183+tanaysrivastav1@users.noreply.github.com>
+Date:   Fri Jan 6 17:54:54 2023 -0600
+
+    read/write to db
+
+M	src/App.jsx
+A	src/components/Create.jsx
+M	src/pages/Home.jsx
+
+commit 5f0b3664b2e07a9c87fb7444bc5ee870cabfaa10
+Author: tanaysrivastav1 <73322183+tanaysrivastav1@users.noreply.github.com>
+Date:   Fri Jan 6 16:32:48 2023 -0600
+
+    added test ride card
+
+M	package-lock.json
+M	src/App.jsx
+A	src/components/Modal.css
+M	src/components/rides/Ride.jsx
+M	src/pages/Home.jsx
+
+commit f9800b2846b77405a13b45423c48797d7699487e
+Author: Camilo <camilochafloque@gmail.com>
+Date:   Wed Jan 4 18:42:55 2023 -0600
+
+    React Vite app setup and firebase config
+
+A	.firebaserc
+A	.gitignore
+A	LICENSE
+M	README.md
+A	database.rules.json
+A	dist/assets/index-7bce8228.css
+A	dist/assets/index-a9354d0f.js
+A	dist/assets/logo-ecc203fb.svg
+A	dist/favicon.svg
+A	dist/index.html
+A	dist/robots.txt
+A	firebase.json
+A	index.html
+A	package-lock.json
+A	package.json
+A	public/favicon.svg
+A	public/index.html
+A	public/robots.txt
+A	src/App.css
+A	src/App.jsx
+A	src/App.test.jsx
+A	src/components/layout/Header.jsx
+A	src/components/rides/Ride.jsx
+A	src/index.css
+A	src/index.jsx
+A	src/logo.svg
+A	src/pages/Home.jsx
+A	src/pages/auth/Login.jsx
+A	src/styles/home.css
+A	src/styles/login.css
+A	src/utils/firebase.js
+A	src/utils/userProfile.js
+A	vite.config.js
+
+commit 384299c0d7a9d0f94f1fd8dcff0b8c0e435fc16b
+Author: Camilo Chafloque <camilochafloque@gmail.com>
+Date:   Wed Jan 4 18:17:09 2023 -0600
+
+    Initial commit
+
+A	README.md

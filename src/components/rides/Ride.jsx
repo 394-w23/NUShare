@@ -65,13 +65,13 @@ const Ride = ({ id, ride }) => {
         <Card bg="light">
           <Card.Header>
             <Card.Title className="ride-header text-muted">
-              {endAddress}
+              Destination: {endAddress}
             </Card.Title>
           </Card.Header>
           <Card.Body>
             <Card.Text className="ride-pickup-title">
-              <BsFillPinMapFill size={28} />
-              <span>Pickup Location:</span> {startAddress}
+              <BsFillPinMapFill size={28} /> <span> Pickup Location:</span>{" "}
+              {startAddress}
             </Card.Text>
             <Card.Text className="ride-pickup-date text-muted">
               <FcPlanner size={28} />
@@ -109,43 +109,74 @@ const Ride = ({ id, ride }) => {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <Button
-              className="ride-button"
-              variant="info"
-              onClick={() => navigate("/rideDetails", {state: {id: user.uid, ride: ride}})}
-            >
-              <Card.Text className="ride-details-button">
-                <FcViewDetails className="ride-button-icon" size={28} />
-                Details
-              </Card.Text>
-            </Button>
-            {user && ride.passengers && ride.passengers.includes(user.uid) && (
-              <Button
-                className="ride-button"
-                variant="danger"
-                onClick={() => handleLeave(user.uid)}
-              >
-                <Card.Text className="ride-leave-button">
-                  <FcCancel className="ride-button-icon" size={28} />
-                  Leave
-                </Card.Text>
-              </Button>
-            )}
-            {user &&
-              ride.passengers &&
-              !ride.passengers.includes(user.uid) &&
-              ride.availableSeats > 0 && (
+            {user ? (
+              <>
+                <Button
+                  className="ride-button"
+                  variant="info"
+                  onClick={() =>
+                    navigate("/rideDetails", {
+                      state: { id: user.uid, ride: ride },
+                    })
+                  }
+                >
+                  <Card.Text className="ride-details-button">
+                    <FcViewDetails className="ride-button-icon" size={28} />
+                    Details
+                  </Card.Text>
+                </Button>
+                {ride.passengers && ride.passengers.includes(user.uid) && (
+                  <Button
+                    className="ride-button"
+                    variant="danger"
+                    onClick={() => handleLeave(user.uid)}
+                  >
+                    <Card.Text className="ride-leave-button">
+                      <FcCancel className="ride-button-icon" size={28} />
+                      Leave
+                    </Card.Text>
+                  </Button>
+                )}
+                {ride.passengers &&
+                  !ride.passengers.includes(user.uid) &&
+                  ride.availableSeats > 0 && (
+                    <Button
+                      className="ride-button"
+                      variant="success"
+                      onClick={() => handleJoin(user.uid)}
+                    >
+                      <Card.Text className="ride-join-button">
+                        <FcPlus className="ride-button-icon" size={28} />
+                        Join
+                      </Card.Text>
+                    </Button>
+                  )}
+              </>
+            ) : (
+              <>
+                <Button
+                  className="ride-button"
+                  variant="info"
+                  onClick={signInWithGoogle}
+                >
+                  <Card.Text className="ride-details-button">
+                    <FcViewDetails className="ride-button-icon" size={28} />
+                    Details
+                  </Card.Text>
+                </Button>
                 <Button
                   className="ride-button"
                   variant="success"
-                  onClick={() => handleJoin(user.uid)}
+                  onClick={signInWithGoogle}
+                  disabled={ride.availableSeats === 0}
                 >
                   <Card.Text className="ride-join-button">
                     <FcPlus className="ride-button-icon" size={28} />
                     Join
                   </Card.Text>
                 </Button>
-              )}
+              </>
+            )}
           </Card.Footer>
         </Card>
       )}
