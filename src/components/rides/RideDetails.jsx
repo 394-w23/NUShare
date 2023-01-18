@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDbUpdate, useDbData } from "../../utils/firebase";
-import { useLocation } from "react-router-dom";
-import { signInWithGoogle } from "../../utils/firebase";
+import { useLocation,  useNavigate} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useProfile } from "../../utils/userProfile";
@@ -9,12 +8,12 @@ import "../../styles/rideDetails.css";
 
 const RideDetails = () => {
   const location = useLocation();
-//   console.log(location.state);
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
+  const [joinButton, setJoinButton] = useState(true);
   const [users, errorUsers, isLoadingUsers] = useDbData("/users");
   const ride = location.state.ride;
-  const userId = location.state.id;
+  const navigate = useNavigate();
 
   const handleJoin = (userId) => {
     const seats = ride.availableSeats;
@@ -25,7 +24,8 @@ const RideDetails = () => {
       availableSeats: seats - 1,
       passengers: updatedPassenger,
     };
-    updateData({ ["/rideDetails/"]: location });
+    updateData({ ["/rideDetails/"]: location});
+    setJoinButton(false);
   };
 
   const handleLeave = (userId) => {
@@ -41,21 +41,8 @@ const RideDetails = () => {
       availableSeats: seats,
       passengers: updatedPassenger,
     };
-    updateData({ ["/rideDetails/"]: location });
-  };
-
-  const retrieveProfilePics = () => {
-    let profilePics = ride.passengers.map((passengerId) => (
-      <div className="col">
-        <img className="profileImages" src={users[passengerId].profilePic} />
-      </div>
-    ));
-
-    while (profilePics.length < 4) {
-      profilePics.push(<div className="col" />);
-    }
-
-    return profilePics;
+    updateData({ ["/rideDetails/"]: location});
+    setJoinButton(true);
   };
 
   const populatePassengers = () => {
@@ -71,7 +58,7 @@ const RideDetails = () => {
             </div>
         </div>
       ));
-  
+    
       return populatePassengers;
   };
 
@@ -81,10 +68,16 @@ const RideDetails = () => {
         <div className="col">
           <Card>
             <Card.Body>
+                <Button
+                class="back"
+                onClick={() => navigate("/")}
+                >
+                    Return
+                </Button>
                 <div className="addressContainer">
-                    <div>
+                    <Card.Title>
                         Ride Details
-                    </div>
+                    </Card.Title>
                     <Card.Title>
                         Trip to {ride.end.address}, {ride.end.city},{" "}
                         {ride.end.zip}
@@ -101,13 +94,22 @@ const RideDetails = () => {
                         </Card.Title>
                 </div>
                 <div className="col">{populatePassengers()}</div>
+            {joinButton && ride.availableSeats > 0 && (
+                <Button
+                className="join"
+                onClick={() => handleJoin(user.uid)}>
+                    Join
+                </Button>
+            )}
+            {!joinButton && ride.availableSeats > 0 && (
+                <Button
+                className="leave"
+                variant="danger"
+                onClick={() => handleLeave(user.uid)}>
+                    Leave
+                </Button>
+            )}
             </Card.Body>
-
-          <Button
-            class="join"
-            onClick={() => handleJoin(user.uid)}>
-                Join
-            </Button>
             </Card>
         </div>
       )}
