@@ -32,4 +32,24 @@
 .addressContainer {
     text-align: center;
 }
+
+.join {
+    margin: auto;
+    display: flex;
+    scale: none;
+    width: 150px;
+    text-align: center;
+    padding-left: 60px;
+    margin-left: 550px;
+}
+
+.leave {
+    margin: auto;
+    display: flex;
+    scale: none;
+    width: 150px;
+    text-align: center;
+    padding-left: 60px;
+    margin-left: 550px;
+}
   
