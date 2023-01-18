@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Create from "./components/Create";
 import Header from "./components/layout/Header";
 import Ride from "./components/rides/Ride";
 import Login from "./pages/auth/Login";
+import Create from "./pages/Create";
 import Home from "./pages/Home";
 import RideDetails from "./components/rides/RideDetails";
 

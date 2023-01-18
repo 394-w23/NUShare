@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDbUpdate } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useProfile } from "../utils/userProfile";
@@ -21,19 +21,34 @@ const Create = () => {
   const [endZip, setEndZip] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const ride = {
-      start: { address: startAddress, city: startCity, zip: startZip },
-      end: { address: endAddress, city: endCity, zip: endZip },
-      date: date,
-      time: time,
-      passengers: [user.uid],
-      availableSeats: 3,
-    };
-    updateData({ ["/rides/" + uuidv4()]: ride });
-    navigate("/");
+    if (
+      !startAddress ||
+      !startCity ||
+      !startZip ||
+      !endAddress ||
+      !endCity ||
+      !endZip ||
+      !date ||
+      !time
+    ) {
+      setError("All the fields are required");
+    } else {
+      const ride = {
+        start: { address: startAddress, city: startCity, zip: startZip },
+        end: { address: endAddress, city: endCity, zip: endZip },
+        date: date,
+        time: time,
+        passengers: [user.uid],
+        availableSeats: 3,
+      };
+      setError("");
+      updateData({ ["/rides/" + uuidv4()]: ride });
+      navigate("/");
+    }
   };
 
   const handleCheckbox = (tag) => {
@@ -89,7 +104,6 @@ const Create = () => {
             value={startAddress}
             onChange={(e) => setStartAddress(e.target.value)}
             disabled={checkbox === "from"}
-            required
           />
           <Form.Text className="text-muted">
             Enter your starting address for the ride pickup
@@ -104,7 +118,6 @@ const Create = () => {
             value={startCity}
             onChange={(e) => setStartCity(e.target.value)}
             disabled={checkbox === "from"}
-            required
           />
           <Form.Text className="text-muted">
             Enter your starting city for the ride pickup
@@ -119,7 +132,6 @@ const Create = () => {
             value={startZip}
             onChange={(e) => setStartZip(e.target.value)}
             disabled={checkbox === "from"}
-            required
           />
           <Form.Text className="text-muted">
             Enter your starting Zip code for the ride pickup
@@ -134,7 +146,6 @@ const Create = () => {
             value={endAddress}
             onChange={(e) => setEndAddress(e.target.value)}
             disabled={checkbox === "to"}
-            required
           />
           <Form.Text className="text-muted">
             Enter your destination address for the ride pickup
@@ -149,7 +160,6 @@ const Create = () => {
             value={endCity}
             onChange={(e) => setEndCity(e.target.value)}
             disabled={checkbox === "to"}
-            required
           />
           <Form.Text className="text-muted">
             Enter your destination city for the ride pickup
@@ -164,7 +174,6 @@ const Create = () => {
             value={endZip}
             onChange={(e) => setEndZip(e.target.value)}
             disabled={checkbox === "to"}
-            required
           />
           <Form.Text className="text-muted">
             Enter your destination Zip code for the ride pickup
@@ -194,6 +203,7 @@ const Create = () => {
             Enter your initial time for the ride pickup
           </Form.Text>
         </Form.Group>
+        {error && <Alert variant="danger text-center">{error}</Alert>}
         <Button
           className="mt-3 w-100 create-ride-button"
           variant="info"
