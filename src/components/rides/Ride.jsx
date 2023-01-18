@@ -1,20 +1,16 @@
 import React from "react";
 import { useDbUpdate, useDbData } from "../../utils/firebase";
 import { useProfile } from "../../utils/userProfile";
-import { useNavigate } from "react-router-dom";
-import { signInWithGoogle } from "../../utils/firebase";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import moment from "moment";
 import { FcPlanner, FcClock, FcAutomotive } from "react-icons/fc";
-import { FcPlus, FcCancel, FcViewDetails } from "react-icons/fc";
 import { BsFillPinMapFill } from "react-icons/bs";
+import RideButtons from "./RideButtons";
 
 const Ride = ({ id, ride }) => {
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
-  const [users, errorUsers, isLoadingUsers] = useDbData("/users");
-  const navigate = useNavigate();
+  const [users] = useDbData("/users");
 
   const startAddress =
     `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}` ===
@@ -75,16 +71,18 @@ const Ride = ({ id, ride }) => {
             </Card.Text>
             <Card.Text className="ride-pickup-date text-muted">
               <FcPlanner size={28} />
-              <span>Pickup Date:</span>{" "}
-              <p>&nbsp;</p>{moment(ride.date).format("dddd, MMM D YYYY")}
+              <span>Pickup Date:</span> <p>&nbsp;</p>
+              {moment(ride.date).format("dddd, MMM D YYYY")}
             </Card.Text>
             <Card.Text className="ride-pickup-time text-muted">
               <FcClock size={28} />
-              <span>Pickup Time:</span> <p>&nbsp;</p>{ride.time}
+              <span>Pickup Time:</span> <p>&nbsp;</p>
+              {ride.time}
             </Card.Text>
             <Card.Text className="ride-available-seats text-muted">
               <FcAutomotive size={28} />
-              <span>Seats available:</span> <p>&nbsp;</p>{ride.availableSeats} / 4
+              <span>Seats available:</span> <p>&nbsp;</p>
+              {ride.availableSeats} / 4
             </Card.Text>
             <hr />
             <Card.Text className="ride-passengers-title text-muted">
@@ -92,10 +90,9 @@ const Ride = ({ id, ride }) => {
             </Card.Text>
             <Card.Text className="ride-passengers-grid">
               {ride.passengers.map((userId, idx) => (
-                <div className="ride-passengers-container">
+                <div key={idx} className="ride-passengers-container">
                   <div className="ride-passengers-image">
                     <img
-                      key={idx}
                       src={users[userId].profilePic}
                       referrerPolicy="no-referrer"
                       alt="profile"
@@ -109,74 +106,13 @@ const Ride = ({ id, ride }) => {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            {user ? (
-              <>
-                <Button
-                  className="ride-button"
-                  variant="info"
-                  onClick={() =>
-                    navigate("/rideDetails", {
-                      state: { id: user.uid, ride: ride },
-                    })
-                  }
-                >
-                  <Card.Text className="ride-details-button">
-                    <FcViewDetails className="ride-button-icon" size={28} />
-                    Details
-                  </Card.Text>
-                </Button>
-                {ride.passengers && ride.passengers.includes(user.uid) && (
-                  <Button
-                    className="ride-button"
-                    variant="danger"
-                    onClick={() => handleLeave(user.uid)}
-                  >
-                    <Card.Text className="ride-leave-button">
-                      <FcCancel className="ride-button-icon" size={28} />
-                      Leave
-                    </Card.Text>
-                  </Button>
-                )}
-                {ride.passengers &&
-                  !ride.passengers.includes(user.uid) &&
-                  ride.availableSeats > 0 && (
-                    <Button
-                      className="ride-button"
-                      variant="success"
-                      onClick={() => handleJoin(user.uid)}
-                    >
-                      <Card.Text className="ride-join-button">
-                        <FcPlus className="ride-button-icon" size={28} />
-                        Join
-                      </Card.Text>
-                    </Button>
-                  )}
-              </>
-            ) : (
-              <>
-                <Button
-                  className="ride-button"
-                  variant="info"
-                  onClick={signInWithGoogle}
-                >
-                  <Card.Text className="ride-details-button">
-                    <FcViewDetails className="ride-button-icon" size={28} />
-                    Details
-                  </Card.Text>
-                </Button>
-                <Button
-                  className="ride-button"
-                  variant="success"
-                  onClick={signInWithGoogle}
-                  disabled={ride.availableSeats === 0}
-                >
-                  <Card.Text className="ride-join-button">
-                    <FcPlus className="ride-button-icon" size={28} />
-                    Join
-                  </Card.Text>
-                </Button>
-              </>
-            )}
+            <RideButtons
+              user={user}
+              ride={ride}
+              rideId={id}
+              handleLeave={handleLeave}
+              handleJoin={handleJoin}
+            />
           </Card.Footer>
         </Card>
       )}
