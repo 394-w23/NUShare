@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Create from "./components/Create";
 import Header from "./components/layout/Header";
 import Ride from "./components/rides/Ride";
 import Login from "./pages/auth/Login";
+import Create from "./pages/Create";
 import Home from "./pages/Home";
-import RideDetails from "./components/rides/RideDetails"
+import RideDetails from "./components/rides/RideDetails";
 
 const App = () => {
   return (
@@ -16,8 +16,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/ride" element={<Ride />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/rideDetails" element={<RideDetails />} />
+          <Route path="/ride/:id" element={<RideDetails />} />
+          <Route path="/create-ride" element={<Create />} />
         </Routes>
       </div>
     </BrowserRouter>

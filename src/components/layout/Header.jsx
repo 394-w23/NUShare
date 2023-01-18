@@ -42,7 +42,7 @@ const Header = () => {
               <Nav className="me-auto">
                 <div
                   className="create-ride-title"
-                  onClick={() => navigate("/create")}
+                  onClick={() => navigate("/create-ride")}
                 >
                   Create Ride
                 </div>

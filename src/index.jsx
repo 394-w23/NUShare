@@ -8,6 +8,7 @@ import "./styles/header.css";
 import "./styles/modal.css";
 import "./styles/create.css";
 import "./styles/ride.css";
+import "./styles/rideDetails.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
