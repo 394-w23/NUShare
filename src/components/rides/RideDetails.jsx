@@ -10,7 +10,7 @@ const RideDetails = () => {
   const location = useLocation();
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
-  const [joinButton, setJoinButton] = useState(true);
+  const [joinButton, setJoinButton] = useState(false);
   const [users, errorUsers, isLoadingUsers] = useDbData("/users");
   const ride = location.state.ride;
   const navigate = useNavigate();
@@ -48,12 +48,11 @@ const RideDetails = () => {
   const populatePassengers = () => {
     let populatePassengers = ride.passengers.map((passengerId) => (
         <div className="passengerCol">
-          <img className="profileImages" src={users[passengerId].profilePic} />
+          <img className="profileImages" referrerPolicy="no-referrer" src={users[passengerId].profilePic} />
             <div className="profileInfo">
                 <Card.Title>
                     Name: {users[passengerId].displayName} <br/>
                     Email: {users[passengerId].email} <br/>
-                    Address: address test
                 </Card.Title>
             </div>
         </div>
@@ -94,7 +93,7 @@ const RideDetails = () => {
                         </Card.Title>
                 </div>
                 <div className="col">{populatePassengers()}</div>
-            {joinButton && ride.availableSeats > 0 && (
+            {/* {joinButton && ride.availableSeats > 0 && (
                 <Button
                 className="join"
                 onClick={() => handleJoin(user.uid)}>
@@ -108,7 +107,7 @@ const RideDetails = () => {
                 onClick={() => handleLeave(user.uid)}>
                     Leave
                 </Button>
-            )}
+            )} */}
             </Card.Body>
             </Card>
         </div>

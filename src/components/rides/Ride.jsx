@@ -59,8 +59,6 @@ const Ride = ({ id, ride }) => {
     }
   };
 
-  const handleDetails = () => {};
-
   return (
     <div>
       {typeof users != "undefined" && users != null && (
@@ -99,6 +97,7 @@ const Ride = ({ id, ride }) => {
                     <img
                       key={idx}
                       src={users[userId].profilePic}
+                      referrerPolicy="no-referrer"
                       alt="profile"
                     />
                   </div>
@@ -113,7 +112,7 @@ const Ride = ({ id, ride }) => {
             <Button
               className="ride-button"
               variant="info"
-              onClick={handleDetails}
+              onClick={() => navigate("/rideDetails", {state: {id: user.uid, ride: ride}})}
             >
               <Card.Text className="ride-details-button">
                 <FcViewDetails className="ride-button-icon" size={28} />
