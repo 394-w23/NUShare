@@ -33,7 +33,7 @@ const Create = () => {
       1 +
       "-" +
       objectDate.getDate();
-    if (date < today ){
+    if (date && date < today ){
       setError("Choose an upcoming date.")
     } else if (
       !startAddress ||
