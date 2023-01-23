@@ -11,6 +11,7 @@ const Home = () => {
 
   const [searchStart, setSearchStart] = useState('');
   const [searchEnd, setSearchEnd] = useState('');
+  const [searchDate, setSearchDate] = useState('');
 
   let rideArray = [];
 
@@ -46,16 +47,26 @@ const Home = () => {
     setSearchEnd('')
 	}
 
+  const handleAll = () => {
+		setSearchStart('')
+    setSearchEnd('')
+	}
+
+  const handleDate = (date) => {
+		setSearchDate(date)
+	}
+
 
   const filteredRides = rideArray.filter(
 		ride => (!searchStart || (ride[1].start.address === searchStart)) &&
-            (!searchEnd || (ride[1].end.address === searchEnd))
+            (!searchEnd || (ride[1].end.address === searchEnd)) &&
+            (!searchDate || (ride[1].date === searchDate))
 		)
 
   return (
     <div>
       <Form.Text className="text-muted me-4">
-          What ride are you looking for?
+          Where?
       </Form.Text>
       <Form.Check
         inline
@@ -70,6 +81,23 @@ const Home = () => {
         name="group1"
         type="radio"
         onClick={() => handleFromAirport()}
+      />
+      <Form.Check
+        inline
+        label="All Rides"
+        name="group1"
+        type="radio"
+        onClick={() => handleAll()}
+      />
+      <br></br>
+      <Form.Text className="text-muted me-4">
+          When?
+      </Form.Text>
+      <Form.Check
+        inline
+        name="group1"
+        type="date"
+        onChange={(e) => handleDate(e.target.value)}
       />
       <hr className="mt-3 mb-3" />
       {typeof rides != "undefined" &&
