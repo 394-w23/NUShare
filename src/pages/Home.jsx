@@ -68,6 +68,7 @@ const Home = () => {
       <Form.Text className="text-muted me-4">
           Where?
       </Form.Text>
+      <br></br>
       <Form.Check
         inline
         label="To Airport"
@@ -80,7 +81,7 @@ const Home = () => {
         label="From Airport"
         name="group1"
         type="radio"
-        onClick={() => handleFromAirport()}
+        onChange={() => handleFromAirport()}
       />
       <Form.Check
         inline
@@ -93,7 +94,8 @@ const Home = () => {
       <Form.Text className="text-muted me-4">
           When?
       </Form.Text>
-      <Form.Check
+      <br></br>
+      <Form.Control
         inline
         name="group1"
         type="date"
