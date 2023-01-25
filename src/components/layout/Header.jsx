@@ -49,6 +49,13 @@ const Header = () => {
               </Nav>
             </Navbar.Collapse>
           )}
+          {user ? (
+            <div class="displayName">
+              Welcome <b>{user.displayName}</b>
+            </div>
+          ) : (
+            <div></div>
+          )}
           {user ? <SignOutButton /> : <SignInButton />}
         </Container>
       </Navbar>

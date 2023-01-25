@@ -27,3 +27,8 @@
   border: 2px solid white;
   color: "white";
 }
+
+.displayName {
+  color: white;
+  margin-right: 20px;
+}
