@@ -2,6 +2,11 @@
   padding: 30px;
 }
 
+.chat-input {
+  display: flex;
+  align-items: center;
+}
+
 .chat-board {
   color: black;
 }

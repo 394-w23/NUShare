@@ -44,19 +44,19 @@ const Chat = () => {
   return (
     <div className="chat-container">
       <div className="text-muted text-center mb-3">
-        <h3>{chat.title}</h3>
+        <h3>Group Chat Board</h3>
       </div>
-      <div className="chat-input">
-        <InputGroup className="mb-3">
+      <div className="chat-input mb-4">
+        <InputGroup>
           <Form.Control
             placeholder="Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <Button variant="outline-light" onClick={handleMessageUpload}>
-            <FcRight size={28} />
-          </Button>
         </InputGroup>
+        <Button className="ms-2" variant="light" onClick={handleMessageUpload}>
+          <FcRight size={28} />
+        </Button>
       </div>
       <div className="chat-board">
         {chat.messages ? (
