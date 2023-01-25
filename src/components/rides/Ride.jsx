@@ -13,16 +13,16 @@ const Ride = ({ id, ride }) => {
   const [users] = useDbData("/users");
 
   const startAddress =
-    `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}` ===
+    `${ride.start.address}` ===
     "10000 W Balmoral Ave, Chicago, 60666"
       ? "Chicago O'Hare International Airport"
-      : `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}`;
+      : `${ride.start.address}`;
 
   const endAddress =
-    `${ride.end.address}, ${ride.end.city}, ${ride.end.zip}` ===
+    `${ride.end.address}` ===
     "10000 W Balmoral Ave, Chicago, 60666"
       ? "Chicago O'Hare International Airport"
-      : `${ride.end.address}, ${ride.end.city}, ${ride.end.zip}`;
+      : `${ride.end.address}`;
 
   const handleJoin = (userId) => {
     const seats = ride.availableSeats;
