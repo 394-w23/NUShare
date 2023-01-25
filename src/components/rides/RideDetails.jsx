@@ -19,17 +19,9 @@ const RideDetails = () => {
   const [joinButton, setJoinButton] = useState(false);
   const ride = location.state.ride;
 
-  const startAddress =
-    `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}` ===
-    "10000 W Balmoral Ave, Chicago, 60666"
-      ? "Chicago O'Hare International Airport"
-      : `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}`;
+  const startAddress = ride.start.address;
 
-  const endAddress =
-    `${ride.end.address}, ${ride.end.city}, ${ride.end.zip}` ===
-    "10000 W Balmoral Ave, Chicago, 60666"
-      ? "Chicago O'Hare International Airport"
-      : `${ride.end.address}, ${ride.end.city}, ${ride.end.zip}`;
+  const endAddress = ride.end.address;
 
   const handleJoin = (userId) => {
     const seats = ride.availableSeats;
