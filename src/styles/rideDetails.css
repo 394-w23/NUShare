@@ -2,7 +2,7 @@
   border-right: 0.5px solid gray;
 }
 
-.card .row .profilePics {
+.card .row .profile-pics {
   border-left: 0;
   border-right: 0;
   border-top: 0;
@@ -14,22 +14,30 @@
   justify-content: start;
 }
 
-.profileImages {
+.profile-images {
   width: initial;
   height: auto;
+  border-radius: 50%;
 }
 
-.passengerCol {
+.passenger-col {
   display: flex;
   padding: 15px;
+  align-content: center;
+  align-items: center;
+  align-self: center;
 }
 
-.profileInfo {
+.profile-info {
   padding-top: 10px;
   padding-left: 10px;
 }
 
-.addressContainer {
+.profile-info span {
+  font-weight: bold;
+}
+
+.address-container {
   text-align: center;
 }
 
@@ -51,4 +59,9 @@
   text-align: center;
   padding-left: 60px;
   margin-left: 550px;
+}
+
+.chat-button {
+  color: white;
+  font-weight: bold;
 }
