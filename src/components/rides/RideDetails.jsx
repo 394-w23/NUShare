@@ -49,10 +49,10 @@ const RideDetails = () => {
           src={users[passengerId].profilePic}
         />
         <div className="profileInfo">
-          <Card.Title>
+          <Card.Text>
             Name: {users[passengerId].displayName} <br />
             Email: {users[passengerId].email} <br />
-          </Card.Title>
+          </Card.Text>
         </div>
       </div>
     ));

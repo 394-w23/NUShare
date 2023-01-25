@@ -16,7 +16,8 @@
 
 .profileImages {
   width: initial;
-  height: auto;
+  height: 100%;
+  align-items: center;
 }
 
 .passengerCol {
@@ -25,8 +26,11 @@
 }
 
 .profileInfo {
-  padding-top: 10px;
   padding-left: 10px;
+  display: flex;
+  align-items: center;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 .addressContainer {
