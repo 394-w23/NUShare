@@ -10,12 +10,14 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
+  margin-left: -8px;
 }
 
 .create-ride-title {
   color: white;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 12px;
 }
 
 .create-ride-title:hover,
@@ -30,5 +32,8 @@
 
 .display-name {
   color: white;
-  margin-right: 20px;
+  margin-right: 15px;
+  width: 140px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
