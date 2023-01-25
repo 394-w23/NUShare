@@ -24,7 +24,7 @@ const Create = () => {
 
   useEffect(() => {
     if (airports && campus) {
-      setStartAddress("North campus");
+      setStartAddress("North Campus");
       setEndAddress("Chicago O'Hare International Airport (ORD)");
     }
   }, [airports, campus]);
@@ -57,12 +57,12 @@ const Create = () => {
   const handleCheckbox = (tag) => {
     if (tag === "to") {
       setCheckbox("to");
-      setStartAddress("North campus");
+      setStartAddress("North Campus");
       setEndAddress("Chicago O'Hare International Airport (ORD)");
     } else if (tag === "from") {
       setCheckbox("from");
       setStartAddress("Chicago O'Hare International Airport (ORD)");
-      setEndAddress("North campus");
+      setEndAddress("North Campus");
     }
   };
 

@@ -52,3 +52,7 @@
   padding-left: 60px;
   margin-left: 550px;
 }
+
+button.close {
+  float: right;
+}

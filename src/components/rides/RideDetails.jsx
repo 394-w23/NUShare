@@ -5,6 +5,8 @@ import Card from "react-bootstrap/Card";
 import { BsFillPinMapFill } from "react-icons/bs";
 import { FcPlanner, FcClock, FcAutomotive } from "react-icons/fc";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 
 const RideDetails = () => {
@@ -58,6 +60,8 @@ const RideDetails = () => {
     return populatePassengers;
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="container mb-5">
       {typeof users != "undefined" && users != null && (
@@ -66,6 +70,9 @@ const RideDetails = () => {
             <Card.Header>
               <Card.Title className="ride-header text-muted">
                 Destination: {endAddress}
+                <Button className="close" variant="danger" onClick={() => navigate("/")}>
+                  Close
+                </Button>
               </Card.Title>
             </Card.Header>
             <Card.Body>
