@@ -3,8 +3,11 @@ import Ride from "../components/rides/Ride";
 import { useDbUpdate } from "../utils/firebase";
 import { useDbData } from "../utils/firebase";
 import Form from "react-bootstrap/Form";
+import { useProfile } from "../utils/userProfile";
 
 const Home = () => {
+  const [user] = useProfile();
+
   const [rides] = useDbData("/rides");
 
   const [updateData] = useDbUpdate("/");
@@ -32,9 +35,18 @@ const Home = () => {
       }
     }
 
-    rideArray.sort((a, b) =>
+    rideArray.sort(function(a,b) {
+      if (a[1].passengers.includes(user.uid) && !b[1].passengers.includes(user.uid)){
+        return -1
+      } 
+      if (!a[1].passengers.includes(user.uid) && b[1].passengers.includes(user.uid)){
+        return 1
+      }
       a[1].date + " " + a[1].time < b[1].date + " " + b[1].time ? -1 : 1
-    );
+    });
+
+    console.log(rideArray)
+
   }
 
   const handleToAirport = () => {
