@@ -1,40 +1,22 @@
-import React, { useState } from "react";
-import { useDbUpdate, useDbData } from "../../utils/firebase";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { useDbData } from "../../utils/firebase";
+import { useLocation } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { BsFillPinMapFill } from "react-icons/bs";
 import { FcPlanner, FcClock, FcAutomotive } from "react-icons/fc";
 import moment from "moment";
-import RideButtons from "./RideButtons";
-import { useProfile } from "../../utils/userProfile";
+
 
 const RideDetails = () => {
-  const navigate = useNavigate();
   const location = useLocation();
-  const [user] = useProfile();
-  const [updateData] = useDbUpdate("/");
   const [users] = useDbData("/users");
 
-  const [joinButton, setJoinButton] = useState(false);
   const ride = location.state.ride;
 
   const startAddress = ride.start.address;
 
   const endAddress = ride.end.address;
 
-  const handleJoin = (userId) => {
-    const seats = ride.availableSeats;
-    const updatedPassenger = ride.passengers;
-    updatedPassenger.push(userId);
-    const updatedRide = {
-      ...ride,
-      availableSeats: seats - 1,
-      passengers: updatedPassenger,
-    };
-    updateData({ ["/rides/" + rideId]: updatedRide });
-    setJoinButton(false);
-  };
 
   const convertTime = (time) => {
     var oldFormatTimeArray = time.split(":");
@@ -55,22 +37,6 @@ const RideDetails = () => {
     return newFormatTime;
   };
 
-  const handleLeave = (userId) => {
-    const seats = ride.availableSeats + 1;
-    const updatedPassenger = ride.passengers;
-    for (var i = 0; i < updatedPassenger.length; i++) {
-      if (updatedPassenger[i] == userId) {
-        updatedPassenger.splice(i, 1);
-      }
-    }
-    const updatedRide = {
-      ...ride,
-      availableSeats: seats,
-      passengers: updatedPassenger,
-    };
-    updateData({ ["/rides/" + rideId]: updatedRide });
-    setJoinButton(true);
-  };
 
   const populatePassengers = () => {
     let populatePassengers = ride.passengers.map((passengerId) => (
