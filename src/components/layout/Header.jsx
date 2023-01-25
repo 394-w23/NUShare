@@ -42,7 +42,7 @@ const Header = () => {
           )}
           {user ? (
             <div className="display-name">
-              Welcome <b>{user.displayName}</b>
+              Welcome <b className="display-name-subheader">{user.displayName}</b>
             </div>
           ) : (
             <div></div>
