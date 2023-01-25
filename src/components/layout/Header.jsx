@@ -50,7 +50,7 @@ const Header = () => {
             </Navbar.Collapse>
           )}
           {user ? (
-            <div class="displayName">
+            <div className="display-name">
               Welcome <b>{user.displayName}</b>
             </div>
           ) : (
