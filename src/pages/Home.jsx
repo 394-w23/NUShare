@@ -21,13 +21,23 @@ const Home = () => {
     return <h4 className="text-muted">There are currently no rides</h4>;
   if (!user) return <h4 className="text-muted">Loading user profile...</h4>;
 
-  const handleToAirport = () => {
+  const handleToORDAirport = () => {
     setSearchEnd("Chicago O'Hare International Airport (ORD)");
     setSearchStart("");
   };
 
-  const handleFromAirport = () => {
+  const handleFromORDAirport = () => {
     setSearchStart("Chicago O'Hare International Airport (ORD)");
+    setSearchEnd("");
+  };
+
+  const handleToMDWAirport = () => {
+    setSearchEnd("Chicago Midway International Airport (MDW)");
+    setSearchStart("");
+  };
+
+  const handleFromMDWAirport = () => {
+    setSearchStart("Chicago Midway International Airport (MDW)");
     setSearchEnd("");
   };
 
@@ -61,17 +71,31 @@ const Home = () => {
       <br></br>
       <Form.Check
         inline="true"
-        label="To Airport"
+        label="To ORD Airport"
         name="group1"
         type="radio"
-        onClick={() => handleToAirport()}
+        onClick={() => handleToORDAirport()}
       />
       <Form.Check
         inline="true"
-        label="From Airport"
+        label="From ORD Airport"
         name="group1"
         type="radio"
-        onChange={() => handleFromAirport()}
+        onChange={() => handleFromORDAirport()}
+      />
+      <Form.Check
+        inline="true"
+        label="To MDW Airport"
+        name="group1"
+        type="radio"
+        onClick={() => handleToMDWAirport()}
+      />
+      <Form.Check
+        inline="true"
+        label="From MDW Airport"
+        name="group1"
+        type="radio"
+        onChange={() => handleFromMDWAirport()}
       />
       <Form.Check
         inline="true"
