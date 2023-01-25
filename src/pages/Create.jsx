@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDbUpdate, useDbData } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -6,29 +6,34 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useProfile } from "../utils/userProfile";
+import getTodaysDate from "../utils/todayDate";
 
 const Create = () => {
+  const navigate = useNavigate();
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
-  const navigate = useNavigate();
   const [airports] = useDbData("/airports");
   const [campus] = useDbData("/campus");
 
-  const [checkbox, setCheckbox] = useState("");
+  const [checkbox, setCheckbox] = useState("to");
   const [startAddress, setStartAddress] = useState("");
   const [endAddress, setEndAddress] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
 
-  let objectDate = new Date();
-  var today =
-    objectDate.getFullYear() +
-    "-" +
-    objectDate.getMonth() +
-    1 +
-    "-" +
-    objectDate.getDate();
+  useEffect(() => {
+    if (airports && campus) {
+      setStartAddress("North campus");
+      setEndAddress("Chicago O'Hare International Airport (ORD)");
+    }
+  }, [airports, campus]);
+
+  if (!user) return <h4 className="text-muted">Loading user profile...</h4>;
+  if (!airports)
+    return <h4 className="text-muted">Loading airports addresses...</h4>;
+  if (!campus)
+    return <h4 className="text-muted">Loading campus addresses...</h4>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,19 +57,27 @@ const Create = () => {
   const handleCheckbox = (tag) => {
     if (tag === "to") {
       setCheckbox("to");
+      setStartAddress("North campus");
+      setEndAddress("Chicago O'Hare International Airport (ORD)");
     } else if (tag === "from") {
       setCheckbox("from");
+      setStartAddress("Chicago O'Hare International Airport (ORD)");
+      setEndAddress("North campus");
     }
   };
 
   const getOptions = (data) => {
     let arr = [];
-    if (data != "undefined" && data != null) {
+    if (data !== "undefined" && data !== null) {
       for (let i = 0; i < data.length; i++) {
-        arr.push(<option value={data[i]}> {data[i]}</option>);
+        arr.push(
+          <option key={i} value={data[i]}>
+            {" "}
+            {data[i]}
+          </option>
+        );
       }
     }
-
     return arr;
   };
 
@@ -79,6 +92,7 @@ const Create = () => {
         </Form.Text>
         <Form.Check
           inline
+          defaultChecked="true"
           label="To Airport"
           name="group1"
           type="radio"
@@ -95,20 +109,20 @@ const Create = () => {
         <hr className="mt-3 mb-3" />
         <Form.Group className="mb-3">
           <Form.Label>Start Address</Form.Label>
-          <Form.Select onChange={(e) => setStartAddress(e.currentTarget.value)}>
+          <Form.Select onChange={(e) => setStartAddress(e.target.value)}>
             {checkbox === "to" ? getOptions(campus) : getOptions(airports)}
           </Form.Select>
           <Form.Text className="text-muted">
-            Enter your starting address for the ride pickup
+            Select your starting address for the ride pickup
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Destination Address</Form.Label>
-          <Form.Select onChange={(e) => setEndAddress(e.currentTarget.value)}>
+          <Form.Select onChange={(e) => setEndAddress(e.target.value)}>
             {checkbox === "to" ? getOptions(airports) : getOptions(campus)}
           </Form.Select>
           <Form.Text className="text-muted">
-            Enter your destination address for the ride pickup
+            Select your destination address for the ride pickup
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3">
@@ -116,7 +130,7 @@ const Create = () => {
           <Form.Control
             type="date"
             name="date"
-            min={today}
+            min={getTodaysDate()}
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
