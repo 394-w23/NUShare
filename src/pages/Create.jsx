@@ -69,7 +69,7 @@ const Create = () => {
   };
 
   return (
-    <div>
+    <div className="container mb-5">
       <div className="create-ride-header">
         <h3 className="mb-3">Create a Ride</h3>
       </div>

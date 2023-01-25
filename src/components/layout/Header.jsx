@@ -4,17 +4,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
-import { signInWithGoogle, signOut } from "../../utils/firebase";
+import { signOut } from "../../utils/firebase";
 import { useProfile } from "../../utils/userProfile";
-
-const SignInButton = () => (
-  <button
-    className="ml-5 p-2 w-15 btn btn-primary sign-button"
-    onClick={signInWithGoogle}
-  >
-    Sign in
-  </button>
-);
 
 const SignOutButton = () => (
   <button
@@ -56,7 +47,7 @@ const Header = () => {
           ) : (
             <div></div>
           )}
-          {user ? <SignOutButton /> : <SignInButton />}
+          {user && <SignOutButton />}
         </Container>
       </Navbar>
     </Row>

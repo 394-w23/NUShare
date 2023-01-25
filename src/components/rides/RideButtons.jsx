@@ -10,7 +10,7 @@ const RideButtons = ({ user, ride, rideId, handleLeave, handleJoin }) => {
 
   return (
     <>
-      {user ? (
+      {user && (
         <>
           <Button
             className="ride-button"
@@ -52,30 +52,6 @@ const RideButtons = ({ user, ride, rideId, handleLeave, handleJoin }) => {
                 </Card.Text>
               </Button>
             )}
-        </>
-      ) : (
-        <>
-          <Button
-            className="ride-button"
-            variant="info"
-            onClick={signInWithGoogle}
-          >
-            <Card.Text className="ride-details-button">
-              <FcViewDetails className="ride-button-icon" size={28} />
-              Details
-            </Card.Text>
-          </Button>
-          <Button
-            className="ride-button"
-            variant="success"
-            onClick={signInWithGoogle}
-            disabled={ride.availableSeats === 0}
-          >
-            <Card.Text className="ride-join-button">
-              <FcPlus className="ride-button-icon" size={28} />
-              Join
-            </Card.Text>
-          </Button>
         </>
       )}
     </>

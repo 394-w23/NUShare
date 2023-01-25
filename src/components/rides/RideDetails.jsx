@@ -52,7 +52,7 @@ const RideDetails = () => {
 
     var AMPM = HH >= 12 ? "PM" : "AM";
     var hours;
-    if(HH == 0){
+    if (HH == 0) {
       hours = HH + 12;
     } else if (HH > 12) {
       hours = HH - 12;
@@ -60,8 +60,8 @@ const RideDetails = () => {
       hours = HH;
     }
     var newFormatTime = hours + ":" + min + " " + AMPM;
-    return newFormatTime
-  }
+    return newFormatTime;
+  };
 
   const handleLeave = (userId) => {
     const seats = ride.availableSeats + 1;
@@ -101,41 +101,41 @@ const RideDetails = () => {
   };
 
   return (
-    <div>
+    <div className="container mb-5">
       {typeof users != "undefined" && users != null && (
         <div className="col">
           <Card bg="light">
-          <Card.Header>
-            <Card.Title className="ride-header text-muted">
-              Destination: {endAddress}
-            </Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text className="ride-pickup-title">
-              <BsFillPinMapFill size={28} /> <span> Pickup Location:</span>{" "}
-              {startAddress}
-            </Card.Text>
-            <Card.Text className="ride-pickup-date text-muted">
-              <FcPlanner size={28} />
-              <span>Pickup Date:</span> <p>&nbsp;</p>
-              {moment(ride.date).format("dddd, MMM D YYYY")}
-            </Card.Text>
-            <Card.Text className="ride-pickup-time text-muted">
-              <FcClock size={28} />
-              <span>Pickup Time:</span> <p>&nbsp;</p>
-              {convertTime(ride.time)}
-            </Card.Text>
-            <Card.Text className="ride-available-seats text-muted">
-              <FcAutomotive size={28} />
-              <span>Seats available:</span> <p>&nbsp;</p>
-              {ride.availableSeats} / 4
-            </Card.Text>
-            <hr />
-          </Card.Body>
-          <Card.Footer>
-          <div className="col">{populatePassengers()}</div>
-          </Card.Footer>
-        </Card>
+            <Card.Header>
+              <Card.Title className="ride-header text-muted">
+                Destination: {endAddress}
+              </Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text className="ride-pickup-title">
+                <BsFillPinMapFill size={28} /> <span> Pickup Location:</span>{" "}
+                {startAddress}
+              </Card.Text>
+              <Card.Text className="ride-pickup-date text-muted">
+                <FcPlanner size={28} />
+                <span>Pickup Date:</span> <p>&nbsp;</p>
+                {moment(ride.date).format("dddd, MMM D YYYY")}
+              </Card.Text>
+              <Card.Text className="ride-pickup-time text-muted">
+                <FcClock size={28} />
+                <span>Pickup Time:</span> <p>&nbsp;</p>
+                {convertTime(ride.time)}
+              </Card.Text>
+              <Card.Text className="ride-available-seats text-muted">
+                <FcAutomotive size={28} />
+                <span>Seats available:</span> <p>&nbsp;</p>
+                {ride.availableSeats} / 4
+              </Card.Text>
+              <hr />
+            </Card.Body>
+            <Card.Footer>
+              <div className="col">{populatePassengers()}</div>
+            </Card.Footer>
+          </Card>
         </div>
       )}
     </div>

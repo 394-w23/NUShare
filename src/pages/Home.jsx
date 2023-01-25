@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Ride from "../components/rides/Ride";
 import Form from "react-bootstrap/Form";
 import { useDbData, useDbUpdate } from "../utils/firebase";
@@ -7,6 +8,7 @@ import sortRides from "../utils/sortRides";
 import getTodaysDate from "../utils/todayDate";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [user] = useProfile();
   const [rides] = useDbData("/rides");
   const [updateData] = useDbUpdate("/");
@@ -54,7 +56,7 @@ const Home = () => {
   );
 
   return (
-    <div>
+    <div className="container mb-5">
       <Form.Text className="text-muted me-4">Where?</Form.Text>
       <br></br>
       <Form.Check
