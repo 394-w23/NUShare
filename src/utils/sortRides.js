@@ -1,4 +1,4 @@
-const sortRides = (rides) => {
+const sortRides = (rides, user) => {
   if (rides !== null) {
     const rideArray = Object.entries(rides);
 

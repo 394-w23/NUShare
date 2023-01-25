@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Ride from "../components/rides/Ride";
-import { useDbData, useDbUpdate } from "../utils/firebase";
 import Form from "react-bootstrap/Form";
+import { useDbData, useDbUpdate } from "../utils/firebase";
+import { useProfile } from "../utils/userProfile";
 import sortRides from "../utils/sortRides";
 import getTodaysDate from "../utils/todayDate";
 
 const Home = () => {
+  const [user] = useProfile();
   const [rides] = useDbData("/rides");
   const [updateData] = useDbUpdate("/");
 
@@ -15,6 +17,7 @@ const Home = () => {
 
   if (!rides)
     return <h4 className="text-muted">There are currently no rides</h4>;
+  if (!user) return <h4 className="text-muted">Loading user profile...</h4>;
 
   const handleToAirport = () => {
     setSearchEnd("Chicago O'Hare International Airport (ORD)");
@@ -43,7 +46,7 @@ const Home = () => {
   });
 
   //Filter the rides by queries made on the forms
-  filteredRides = sortRides(rides).filter(
+  filteredRides = sortRides(rides, user).filter(
     (ride) =>
       (!searchStart || ride[1].start.address === searchStart) &&
       (!searchEnd || ride[1].end.address === searchEnd) &&

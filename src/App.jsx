@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/layout/Header";
-import Ride from "./components/rides/Ride";
 import Login from "./pages/auth/Login";
 import Create from "./pages/Create";
 import Home from "./pages/Home";
@@ -15,7 +14,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/ride" element={<Ride />} />
           <Route path="/ride/:id" element={<RideDetails />} />
           <Route path="/create-ride" element={<Create />} />
         </Routes>
