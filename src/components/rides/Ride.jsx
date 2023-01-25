@@ -45,6 +45,7 @@ const Ride = ({ id, ride }) => {
     updateData({ ["/rides/" + id]: updatedRide });
     if (seats === 4) {
       updateData({ ["/rides/" + id]: null });
+      updateData({ ["/chats/" + id]: null });
     }
   };
 

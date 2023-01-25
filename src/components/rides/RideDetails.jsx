@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { BsFillPinMapFill } from "react-icons/bs";
@@ -10,17 +10,15 @@ import convertTime from "../../utils/convertTime";
 
 const RideDetails = () => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const [users] = useDbData("/users");
 
   const ride = location.state.ride;
   const rideId = location.state.rideId;
   const userId = location.state.id;
 
-  const handleChatButton = (passengerId) => {
-    console.log("me: " + userId);
-    console.log("other: " + passengerId);
-    console.log("ride id: " + rideId);
+  const handleChatButton = () => {
+    navigate("/chat/" + rideId);
   };
 
   const populatePassengers = () => {
@@ -35,14 +33,6 @@ const RideDetails = () => {
           <Card.Text className="text-muted">
             <span>Name:</span> {users[passengerId].displayName} <br />
             <span>Email:</span> {users[passengerId].email} <br />
-            <Button
-              size="sm"
-              className="chat-button"
-              variant="info"
-              onClick={() => handleChatButton(passengerId)}
-            >
-              <FcSms size={28} />
-            </Button>
           </Card.Text>
         </div>
       </div>
@@ -82,6 +72,14 @@ const RideDetails = () => {
                 {ride.availableSeats} / 4
               </Card.Text>
               <hr />
+              <Button
+                size="md"
+                className="chat-button"
+                variant="success"
+                onClick={handleChatButton}
+              >
+                <FcSms size={28} /> Chat Board
+              </Button>
             </Card.Body>
             <Card.Footer>
               <div className="col">{populatePassengers()}</div>

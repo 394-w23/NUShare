@@ -4,6 +4,7 @@ import Header from "./components/layout/Header";
 import Login from "./pages/auth/Login";
 import Create from "./pages/Create";
 import Home from "./pages/Home";
+import Chat from "./pages/Chat";
 import RideDetails from "./components/rides/RideDetails";
 import { useProfile } from "./utils/userProfile";
 
@@ -47,6 +48,19 @@ const App = () => {
               <>
                 <Header />
                 <Create />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/chat/:id"
+          element={
+            user ? (
+              <>
+                <Header />
+                <Chat />
               </>
             ) : (
               <Navigate replace to="/login" />
