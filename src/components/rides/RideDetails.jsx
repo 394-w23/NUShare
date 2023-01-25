@@ -3,6 +3,10 @@ import { useDbUpdate, useDbData } from "../../utils/firebase";
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { BsFillPinMapFill } from "react-icons/bs";
+import { FcPlanner, FcClock, FcAutomotive } from "react-icons/fc";
+import moment from "moment";
+import RideButtons from "./RideButtons";
 import { useProfile } from "../../utils/userProfile";
 
 const RideDetails = () => {
@@ -14,6 +18,18 @@ const RideDetails = () => {
 
   const [joinButton, setJoinButton] = useState(false);
   const ride = location.state.ride;
+
+  const startAddress =
+    `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}` ===
+    "10000 W Balmoral Ave, Chicago, 60666"
+      ? "Chicago O'Hare International Airport"
+      : `${ride.start.address}, ${ride.start.city}, ${ride.start.zip}`;
+
+  const endAddress =
+    `${ride.end.address}, ${ride.end.city}, ${ride.end.zip}` ===
+    "10000 W Balmoral Ave, Chicago, 60666"
+      ? "Chicago O'Hare International Airport"
+      : `${ride.end.address}, ${ride.end.city}, ${ride.end.zip}`;
 
   const handleJoin = (userId) => {
     const seats = ride.availableSeats;
@@ -27,6 +43,25 @@ const RideDetails = () => {
     updateData({ ["/rides/" + rideId]: updatedRide });
     setJoinButton(false);
   };
+
+  const convertTime = (time) => {
+    var oldFormatTimeArray = time.split(":");
+
+    var HH = parseInt(oldFormatTimeArray[0]);
+    var min = oldFormatTimeArray[1];
+
+    var AMPM = HH >= 12 ? "PM" : "AM";
+    var hours;
+    if(HH == 0){
+      hours = HH + 12;
+    } else if (HH > 12) {
+      hours = HH - 12;
+    } else {
+      hours = HH;
+    }
+    var newFormatTime = hours + ":" + min + " " + AMPM;
+    return newFormatTime
+  }
 
   const handleLeave = (userId) => {
     const seats = ride.availableSeats + 1;
@@ -69,45 +104,38 @@ const RideDetails = () => {
     <div>
       {typeof users != "undefined" && users != null && (
         <div className="col">
-          <Card>
-            <Card.Body>
-              <Button class="back" onClick={() => navigate("/")}>
-                Return
-              </Button>
-              <div className="addressContainer">
-                <Card.Title>Ride Details</Card.Title>
-                <Card.Title>
-                  Trip to {ride.end.address}, {ride.end.city}, {ride.end.zip}
-                </Card.Title>
-                <Card.Title>
-                  Starting from {ride.start.address}, {ride.start.city},{" "}
-                  {ride.start.zip}
-                </Card.Title>
-                <Card.Title>
-                  On {ride.date} at {ride.time}
-                </Card.Title>
-                <Card.Title>
-                  Seats available: {ride.availableSeats}/4
-                </Card.Title>
-              </div>
-              <div className="col">{populatePassengers()}</div>
-              {/* {joinButton && ride.availableSeats > 0 && (
-                <Button
-                className="join"
-                onClick={() => handleJoin(user.uid)}>
-                    Join
-                </Button>
-            )}
-            {!joinButton && ride.availableSeats > 0 && (
-                <Button
-                className="leave"
-                variant="danger"
-                onClick={() => handleLeave(user.uid)}>
-                    Leave
-                </Button>
-            )} */}
-            </Card.Body>
-          </Card>
+          <Card bg="light">
+          <Card.Header>
+            <Card.Title className="ride-header text-muted">
+              Destination: {endAddress}
+            </Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Card.Text className="ride-pickup-title">
+              <BsFillPinMapFill size={28} /> <span> Pickup Location:</span>{" "}
+              {startAddress}
+            </Card.Text>
+            <Card.Text className="ride-pickup-date text-muted">
+              <FcPlanner size={28} />
+              <span>Pickup Date:</span> <p>&nbsp;</p>
+              {moment(ride.date).format("dddd, MMM D YYYY")}
+            </Card.Text>
+            <Card.Text className="ride-pickup-time text-muted">
+              <FcClock size={28} />
+              <span>Pickup Time:</span> <p>&nbsp;</p>
+              {convertTime(ride.time)}
+            </Card.Text>
+            <Card.Text className="ride-available-seats text-muted">
+              <FcAutomotive size={28} />
+              <span>Seats available:</span> <p>&nbsp;</p>
+              {ride.availableSeats} / 4
+            </Card.Text>
+            <hr />
+          </Card.Body>
+          <Card.Footer>
+          <div className="col">{populatePassengers()}</div>
+          </Card.Footer>
+        </Card>
         </div>
       )}
     </div>

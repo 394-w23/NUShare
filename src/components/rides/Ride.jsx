@@ -128,7 +128,6 @@ const Ride = ({ id, ride }) => {
             <RideButtons
               user={user}
               ride={ride}
-              rideId={id}
               handleLeave={handleLeave}
               handleJoin={handleJoin}
             />
