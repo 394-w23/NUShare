@@ -21,29 +21,23 @@ const Create = () => {
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
 
+  let objectDate = new Date();
+  var today =
+    objectDate.getFullYear() +
+    "-" +
+    objectDate.getMonth() +
+    1 +
+    "-" +
+    objectDate.getDate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let objectDate = new Date();
-    var today =
-      objectDate.getFullYear() +
-      "-" +
-      objectDate.getMonth() +
-      1 +
-      "-" +
-      objectDate.getDate();
-    if (date && date < today ){
-      setError("Choose an upcoming date.")
-    } else if (
-      !startAddress ||
-      !endAddress ||
-      !date ||
-      !time
-    ) {
+    if (!startAddress || !endAddress || !date || !time) {
       setError("All the fields are required");
     } else {
       const ride = {
         start: { address: startAddress },
-        end: { address: endAddress},
+        end: { address: endAddress },
         date: date,
         time: time,
         passengers: [user.uid],
@@ -56,7 +50,6 @@ const Create = () => {
   };
 
   const handleCheckbox = (tag) => {
-
     if (tag === "to") {
       setCheckbox("to");
     } else if (tag === "from") {
@@ -66,14 +59,14 @@ const Create = () => {
 
   const getOptions = (data) => {
     let arr = [];
-      if (data != "undefined" && data != null) {
+    if (data != "undefined" && data != null) {
       for (let i = 0; i < data.length; i++) {
-          arr.push(<option value={data[i]}> {data[i]}</option>);
+        arr.push(<option value={data[i]}> {data[i]}</option>);
       }
     }
 
     return arr;
-  }
+  };
 
   return (
     <div>
@@ -98,14 +91,12 @@ const Create = () => {
           type="radio"
           onClick={() => handleCheckbox("from")}
         />
-        
+
         <hr className="mt-3 mb-3" />
         <Form.Group className="mb-3">
           <Form.Label>Start Address</Form.Label>
-          <Form.Select 
-          onChange={(e) => setStartAddress(e.currentTarget.value)}
-          >
-          { checkbox === "to" ? getOptions(campus) : getOptions(airports)}
+          <Form.Select onChange={(e) => setStartAddress(e.currentTarget.value)}>
+            {checkbox === "to" ? getOptions(campus) : getOptions(airports)}
           </Form.Select>
           <Form.Text className="text-muted">
             Enter your starting address for the ride pickup
@@ -113,9 +104,8 @@ const Create = () => {
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Destination Address</Form.Label>
-          <Form.Select 
-          onChange={(e) => setEndAddress(e.currentTarget.value)} >
-          { checkbox === "to" ? getOptions(airports) : getOptions(campus)}
+          <Form.Select onChange={(e) => setEndAddress(e.currentTarget.value)}>
+            {checkbox === "to" ? getOptions(airports) : getOptions(campus)}
           </Form.Select>
           <Form.Text className="text-muted">
             Enter your destination address for the ride pickup
@@ -126,6 +116,7 @@ const Create = () => {
           <Form.Control
             type="date"
             name="date"
+            min={today}
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
