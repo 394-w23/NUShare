@@ -55,6 +55,25 @@ const Ride = ({ id, ride }) => {
     }
   };
 
+  const convertTime = (time) => {
+    var oldFormatTimeArray = time.split(":");
+
+    var HH = parseInt(oldFormatTimeArray[0]);
+    var min = oldFormatTimeArray[1];
+
+    var AMPM = HH >= 12 ? "PM" : "AM";
+    var hours;
+    if(HH == 0){
+      hours = HH + 12;
+    } else if (HH > 12) {
+      hours = HH - 12;
+    } else {
+      hours = HH;
+    }
+    var newFormatTime = hours + ":" + min + " " + AMPM;
+    return newFormatTime
+  }
+
   return (
     <div>
       {typeof users != "undefined" && users != null && (
@@ -77,7 +96,7 @@ const Ride = ({ id, ride }) => {
             <Card.Text className="ride-pickup-time text-muted">
               <FcClock size={28} />
               <span>Pickup Time:</span> <p>&nbsp;</p>
-              {ride.time}
+              {convertTime(ride.time)}
             </Card.Text>
             <Card.Text className="ride-available-seats text-muted">
               <FcAutomotive size={28} />
