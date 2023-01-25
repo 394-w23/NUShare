@@ -66,13 +66,13 @@ const Chat = () => {
                 <>
                   <p className="right-message">{msg.message}</p>
                   <div className="image-container">
-                    <img src={msg.photo} />
+                    <img className="right-photo" src={msg.photo} />
                   </div>
                 </>
               ) : (
                 <>
                   <div className="image-container">
-                    <img src={msg.photo} />
+                    <img className="left-photo" src={msg.photo} />
                   </div>
                   <p className="left-message">{msg.message}</p>
                 </>
