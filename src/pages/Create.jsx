@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDbUpdate } from "../utils/firebase";
+import { useDbUpdate, useDbData } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -11,14 +11,12 @@ const Create = () => {
   const [user] = useProfile();
   const [updateData] = useDbUpdate("/");
   const navigate = useNavigate();
+  const [airports] = useDbData("/airports");
+  const [campus] = useDbData("/campus");
 
   const [checkbox, setCheckbox] = useState("");
   const [startAddress, setStartAddress] = useState("");
-  const [startCity, setStartCity] = useState("");
-  const [startZip, setStartZip] = useState("");
   const [endAddress, setEndAddress] = useState("");
-  const [endCity, setEndCity] = useState("");
-  const [endZip, setEndZip] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
@@ -37,19 +35,15 @@ const Create = () => {
       setError("Choose an upcoming date.")
     } else if (
       !startAddress ||
-      !startCity ||
-      !startZip ||
       !endAddress ||
-      !endCity ||
-      !endZip ||
       !date ||
       !time
     ) {
       setError("All the fields are required");
     } else {
       const ride = {
-        start: { address: startAddress, city: startCity, zip: startZip },
-        end: { address: endAddress, city: endCity, zip: endZip },
+        start: { address: startAddress },
+        end: { address: endAddress},
         date: date,
         time: time,
         passengers: [user.uid],
@@ -62,24 +56,24 @@ const Create = () => {
   };
 
   const handleCheckbox = (tag) => {
+
     if (tag === "to") {
       setCheckbox("to");
-      setEndAddress("10000 W Balmoral Ave");
-      setEndCity("Chicago");
-      setEndZip("60666");
-      setStartAddress("");
-      setStartCity("");
-      setStartZip("");
     } else if (tag === "from") {
       setCheckbox("from");
-      setEndAddress("");
-      setEndCity("");
-      setEndZip("");
-      setStartAddress("10000 W Balmoral Ave");
-      setStartCity("Chicago");
-      setStartZip("60666");
     }
   };
+
+  const getOptions = (data) => {
+    let arr = [];
+      if (data != "undefined" && data != null) {
+      for (let i = 0; i < data.length; i++) {
+          arr.push(<option value={data[i]}> {data[i]}</option>);
+      }
+    }
+
+    return arr;
+  }
 
   return (
     <div>
@@ -104,89 +98,27 @@ const Create = () => {
           type="radio"
           onClick={() => handleCheckbox("from")}
         />
+        
         <hr className="mt-3 mb-3" />
         <Form.Group className="mb-3">
           <Form.Label>Start Address</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your starting address"
-            name="startAddress"
-            value={startAddress}
-            onChange={(e) => setStartAddress(e.target.value)}
-            disabled={checkbox === "from"}
-          />
+          <Form.Select 
+          onChange={(e) => setStartAddress(e.currentTarget.value)}
+          >
+          { checkbox === "to" ? getOptions(campus) : getOptions(airports)}
+          </Form.Select>
           <Form.Text className="text-muted">
             Enter your starting address for the ride pickup
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Start City</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your starting city"
-            name="startCity"
-            value={startCity}
-            onChange={(e) => setStartCity(e.target.value)}
-            disabled={checkbox === "from"}
-          />
-          <Form.Text className="text-muted">
-            Enter your starting city for the ride pickup
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Start Zip</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your starting Zip code"
-            name="startZip"
-            value={startZip}
-            onChange={(e) => setStartZip(e.target.value)}
-            disabled={checkbox === "from"}
-          />
-          <Form.Text className="text-muted">
-            Enter your starting Zip code for the ride pickup
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
           <Form.Label>Destination Address</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your destination address"
-            name="endAddress"
-            value={endAddress}
-            onChange={(e) => setEndAddress(e.target.value)}
-            disabled={checkbox === "to"}
-          />
+          <Form.Select 
+          onChange={(e) => setEndAddress(e.currentTarget.value)} >
+          { checkbox === "to" ? getOptions(airports) : getOptions(campus)}
+          </Form.Select>
           <Form.Text className="text-muted">
             Enter your destination address for the ride pickup
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Destination City</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your destination city"
-            name="endCity"
-            value={endCity}
-            onChange={(e) => setEndCity(e.target.value)}
-            disabled={checkbox === "to"}
-          />
-          <Form.Text className="text-muted">
-            Enter your destination city for the ride pickup
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Destination Zip</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your destination Zip code"
-            name="endZip"
-            value={endZip}
-            onChange={(e) => setEndZip(e.target.value)}
-            disabled={checkbox === "to"}
-          />
-          <Form.Text className="text-muted">
-            Enter your destination Zip code for the ride pickup
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3">
