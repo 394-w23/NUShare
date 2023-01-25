@@ -14,12 +14,14 @@ const Create = () => {
   const [updateData] = useDbUpdate("/");
   const [airports] = useDbData("/airports");
   const [campus] = useDbData("/campus");
+  const [seats] = useDbData("/seats");
 
   const [checkbox, setCheckbox] = useState("to");
   const [startAddress, setStartAddress] = useState("");
   const [endAddress, setEndAddress] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [numSeats, setNumSeats] = useState(0);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -34,10 +36,11 @@ const Create = () => {
     return <h4 className="text-muted">Loading airports addresses...</h4>;
   if (!campus)
     return <h4 className="text-muted">Loading campus addresses...</h4>;
+  if (!seats) return <h4 className="text-muted">Loading number of seats...</h4>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!startAddress || !endAddress || !date || !time) {
+    if (!startAddress || !endAddress || !date || !time || !numSeats) {
       setError("All the fields are required");
     } else {
       const ride = {
@@ -46,7 +49,7 @@ const Create = () => {
         date: date,
         time: time,
         passengers: [user.uid],
-        availableSeats: 3,
+        availableSeats: numSeats,
       };
       setError("");
       updateData({ ["/rides/" + uuidv4()]: ride });
@@ -148,6 +151,16 @@ const Create = () => {
           />
           <Form.Text className="text-muted">
             Enter your initial time for the ride pickup
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label># of Passengers</Form.Label>
+          <Form.Select onChange={(e) => setNumSeats(Number(e.target.value))}>
+            <option value="" selected disabled hidden />
+            {getOptions(seats)}
+          </Form.Select>
+          <Form.Text className="text-muted">
+            Select the number of total passengers
           </Form.Text>
         </Form.Group>
         {error && <Alert variant="danger text-center">{error}</Alert>}
