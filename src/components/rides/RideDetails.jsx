@@ -68,11 +68,12 @@ const RideDetails = () => {
         <div className="col">
           <Card bg="light">
             <Card.Header>
-              <Card.Title className="ride-header text-muted">
-                Destination: {endAddress}
-                <Button className="close" variant="danger" onClick={() => navigate("/")}>
+            <Button className="close" variant="danger" onClick={() => navigate("/")}>
                   Close
                 </Button>
+              <Card.Title className="ride-header text-muted">
+                Destination: {endAddress}
+                
               </Card.Title>
             </Card.Header>
             <Card.Body>
