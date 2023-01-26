@@ -17,7 +17,7 @@ const sortRides = (rides, user) => {
           return 1;
         }
       }
-      a[1].date + " " + a[1].time < b[1].date + " " + b[1].time ? -1 : 1;
+      return a[1].date + " " + a[1].time < b[1].date + " " + b[1].time ? -1 : 1;
     });
     return rideArray;
   }

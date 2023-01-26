@@ -16,7 +16,7 @@ const Home = () => {
   const [searchStart, setSearchStart] = useState("");
   const [searchEnd, setSearchEnd] = useState("");
   const [searchDate, setSearchDate] = useState("");
-
+  
   if (!rides)
     return <h4 className="text-muted">There are currently no rides</h4>;
   if (!user) return <h4 className="text-muted">Loading user profile...</h4>;
