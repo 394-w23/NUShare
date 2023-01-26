@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FcRight } from "react-icons/fc";
 import { useParams } from "react-router-dom";
@@ -15,6 +16,7 @@ const Chat = () => {
   const [updateData] = useDbUpdate("/");
 
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleMessageUpload = () => {
     if (message) {
@@ -35,6 +37,9 @@ const Chat = () => {
 
       updateData({ ["/chats/" + id]: { ...chat, messages } });
       setMessage("");
+      setError("");
+    } else {
+      setError("Enter a valid message");
     }
   };
 
@@ -57,6 +62,7 @@ const Chat = () => {
           <FcRight size={28} />
         </Button>
       </div>
+      <div>{error && <Alert variant="danger text-center">{error}</Alert>}</div>
       <div className="chat-board">
         {chat.messages ? (
           chat.messages.map((msg, idx) => (
