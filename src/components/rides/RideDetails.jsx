@@ -41,8 +41,6 @@ const RideDetails = () => {
     return populatePassengers;
   };
 
-  const navigate = useNavigate();
-
   return (
     <div className="container mb-5">
       {typeof users != "undefined" && users != null && (

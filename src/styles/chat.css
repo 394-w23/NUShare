@@ -13,12 +13,11 @@
 
 .message-container {
   overflow-y: auto;
-  margin-bottom: 3px;
   display: flex;
 }
 
 .message-container img {
-  height: 25px;
+  height: 30px;
   border-radius: 50%;
 }
 
@@ -29,11 +28,10 @@
 
 .right-message {
   box-sizing: border-box;
-  margin: 1rem 1rem 1rem auto;
+  margin: 0.25rem 0.25rem 0.25rem auto;
   width: fit-content;
   max-width: 66%;
   background-color: #1e90ff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: white;
   padding: 12px;
   border-radius: 1.125rem 1.125rem 0 1.125rem;
@@ -41,20 +39,20 @@
 
 .left-message {
   box-sizing: border-box;
-  margin: 1rem;
+  margin: 0 1rem 1rem 1rem;
   width: fit-content;
   max-width: 66%;
   background-color: grey;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: white;
-  padding: 12px;
+  padding: 15px;
   border-radius: 1.125rem 1.125rem 1.125rem 0;
 }
 
 .left-photo {
-  margin-right: -13px;
+  margin-right: -8px;
 }
 
-.right-photo {
-  margin-left: -13px;
+.left-name {
+  font-size: 10px;
+  margin: 0 0 0 1.3rem;
 }

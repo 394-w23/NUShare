@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { FcLeftUp2, FcRight } from "react-icons/fc";
+import { FcRight } from "react-icons/fc";
 import { useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
 import getTodaysDate from "../utils/todayDate";
@@ -44,7 +43,7 @@ const Chat = () => {
   return (
     <div className="chat-container">
       <div className="text-muted text-center mb-3">
-        <h3>Group Chat Board</h3>
+        <h3>Group Chat</h3>
       </div>
       <div className="chat-input mb-4">
         <InputGroup>
@@ -65,16 +64,16 @@ const Chat = () => {
               {msg.sender === user.uid ? (
                 <>
                   <p className="right-message">{msg.message}</p>
-                  <div className="image-container">
-                    <img className="right-photo" src={msg.photo} />
-                  </div>
                 </>
               ) : (
                 <>
                   <div className="image-container">
                     <img className="left-photo" src={msg.photo} />
                   </div>
-                  <p className="left-message">{msg.message}</p>
+                  <div className="left-info">
+                    <p className="left-name text-muted">{msg.name}</p>
+                    <p className="left-message">{msg.message}</p>
+                  </div>
                 </>
               )}
             </div>
