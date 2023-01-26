@@ -53,6 +53,7 @@ const Home = () => {
   //First check if any ride needs to be deleted from the db because of date
   let filteredRides = Object.entries(rides).forEach(([idx, ride]) => {
     if (ride.date < getTodaysDate()) {
+      updateData({ ["/chats" + idx]: null })
       updateData({ ["/rides/" + idx]: null });
     }
   });

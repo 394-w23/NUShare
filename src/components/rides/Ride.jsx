@@ -42,7 +42,10 @@ const Ride = ({ id, ride }) => {
       availableSeats: seats + 1,
       passengers: updatedPassenger,
     };
+
+    console.log(updatedRide)
     if (updatedPassenger.length === 0) {
+      updateData({ ["/chats/" + id]: null })
       updateData({ ["/rides/" + id]: null });
     } else {
       updateData({ ["/rides/" + id]: updatedRide });
