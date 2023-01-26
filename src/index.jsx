@@ -8,6 +8,7 @@ import "./styles/login.css";
 import "./styles/header.css";
 import "./styles/modal.css";
 import "./styles/create.css";
+import "./styles/chat.css";
 import "./styles/ride.css";
 import "./styles/rideDetails.css";
 

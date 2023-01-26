@@ -1,54 +1,38 @@
 import React from "react";
-import { useDbData } from "../../utils/firebase";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { BsFillPinMapFill } from "react-icons/bs";
-import { FcPlanner, FcClock, FcAutomotive } from "react-icons/fc";
+import { FcPlanner, FcClock, FcAutomotive, FcSms } from "react-icons/fc";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { useDbData } from "../../utils/firebase";
+import convertTime from "../../utils/convertTime";
 
 const RideDetails = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [users] = useDbData("/users");
 
   const ride = location.state.ride;
+  const rideId = location.state.rideId;
+  const userId = location.state.id;
 
-  const startAddress = ride.start.address;
-
-  const endAddress = ride.end.address;
-
-  const convertTime = (time) => {
-    var oldFormatTimeArray = time.split(":");
-
-    var HH = parseInt(oldFormatTimeArray[0]);
-    var min = oldFormatTimeArray[1];
-
-    var AMPM = HH >= 12 ? "PM" : "AM";
-    var hours;
-    if (HH == 0) {
-      hours = HH + 12;
-    } else if (HH > 12) {
-      hours = HH - 12;
-    } else {
-      hours = HH;
-    }
-    var newFormatTime = hours + ":" + min + " " + AMPM;
-    return newFormatTime;
+  const handleChatButton = () => {
+    navigate("/chat/" + rideId);
   };
 
   const populatePassengers = () => {
-    let populatePassengers = ride.passengers.map((passengerId) => (
-      <div className="passengerCol">
+    let populatePassengers = ride.passengers.map((passengerId, idx) => (
+      <div key={idx} className="passenger-col">
         <img
-          className="profileImages"
+          className="profile-images"
           referrerPolicy="no-referrer"
           src={users[passengerId].profilePic}
         />
-        <div className="profileInfo">
-          <Card.Text>
-            Name: {users[passengerId].displayName} <br />
-            Email: {users[passengerId].email} <br />
+        <div className="profile-info">
+          <Card.Text className="text-muted">
+            <span>Name:</span> {users[passengerId].displayName} <br />
+            <span>Email:</span> {users[passengerId].email} <br />
           </Card.Text>
         </div>
       </div>
@@ -56,8 +40,6 @@ const RideDetails = () => {
 
     return populatePassengers;
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="container mb-5">
@@ -73,13 +55,13 @@ const RideDetails = () => {
                 Close
               </Button>
               <Card.Title className="ride-header text-muted">
-                Destination: {endAddress}
+                Destination: {ride.end.address}
               </Card.Title>
             </Card.Header>
             <Card.Body>
               <Card.Text className="ride-pickup-title">
                 <BsFillPinMapFill size={28} /> <span> Pickup Location:</span>{" "}
-                {startAddress}
+                {ride.start.address}
               </Card.Text>
               <Card.Text className="ride-pickup-date text-muted">
                 <FcPlanner size={28} />
@@ -97,6 +79,14 @@ const RideDetails = () => {
                 {ride.availableSeats} / {ride.totalSeats}
               </Card.Text>
               <hr />
+              <Button
+                size="md"
+                className="chat-button"
+                variant="success"
+                onClick={handleChatButton}
+              >
+                <FcSms size={28} /> Chat Board
+              </Button>
             </Card.Body>
             <Card.Footer>
               <div className="col">{populatePassengers()}</div>

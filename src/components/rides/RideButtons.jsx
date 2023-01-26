@@ -12,20 +12,22 @@ const RideButtons = ({ user, ride, rideId, handleLeave, handleJoin }) => {
     <>
       {user && (
         <>
-          <Button
-            className="ride-button"
-            variant="info"
-            onClick={() =>
-              navigate("/ride/" + rideId, {
-                state: { id: user.uid, ride: ride, rideId: rideId },
-              })
-            }
-          >
-            <Card.Text className="ride-details-button">
-              <FcViewDetails className="ride-button-icon" size={28} />
-              Details
-            </Card.Text>
-          </Button>
+          {ride.passengers && ride.passengers.includes(user.uid) && (
+            <Button
+              className="ride-button"
+              variant="info"
+              onClick={() =>
+                navigate("/ride/" + rideId, {
+                  state: { id: user.uid, ride: ride, rideId: rideId },
+                })
+              }
+            >
+              <Card.Text className="ride-details-button">
+                <FcViewDetails className="ride-button-icon" size={28} />
+                Details
+              </Card.Text>
+            </Button>
+          )}
           {ride.passengers && ride.passengers.includes(user.uid) && (
             <Button
               className="ride-button"

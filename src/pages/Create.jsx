@@ -43,6 +43,7 @@ const Create = () => {
     if (!startAddress || !endAddress || !date || !time || !numSeats) {
       setError("All the fields are required");
     } else {
+      const uid = uuidv4();
       const ride = {
         start: { address: startAddress },
         end: { address: endAddress },
@@ -52,8 +53,16 @@ const Create = () => {
         totalSeats: numSeats,
         availableSeats: numSeats - 1,
       };
+
+      const chat = {
+        id: uid,
+        title: "Group chat #" + uid,
+        messages: [],
+      };
+
       setError("");
-      updateData({ ["/rides/" + uuidv4()]: ride });
+      updateData({ ["/rides/" + uid]: ride });
+      updateData({ ["/chats/" + uid]: chat });
       navigate("/");
     }
   };
