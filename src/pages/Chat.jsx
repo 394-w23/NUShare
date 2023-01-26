@@ -43,6 +43,12 @@ const Chat = () => {
     }
   };
 
+  const handleMessageUploadEnter = (e) => {
+    if (e.keyCode === 13){
+      handleMessageUpload()
+    }
+  }
+
   if (!chat) return <h4 className="text-muted">Loading chat...</h4>;
 
   return (
@@ -56,6 +62,7 @@ const Chat = () => {
             placeholder="Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => handleMessageUploadEnter(e)}
           />
         </InputGroup>
         <Button className="ms-2" variant="light" onClick={handleMessageUpload}>
