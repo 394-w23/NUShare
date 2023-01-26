@@ -39,7 +39,7 @@ const Ride = ({ id, ride }) => {
     }
     const updatedRide = {
       ...ride,
-      availableSeats: seats,
+      availableSeats: seats + 1,
       passengers: updatedPassenger,
     };
     if (updatedPassenger.length === 0) {
@@ -74,7 +74,7 @@ const Ride = ({ id, ride }) => {
         <Card.Text className="ride-available-seats text-muted">
           <FcAutomotive size={28} />
           <span>Seats available:</span> <p>&nbsp;</p>
-          {ride.passengers ? ride.passengers.length : 0} / {ride.availableSeats}
+          {ride.availableSeats} / {ride.totalSeats}
         </Card.Text>
         <hr />
         <Card.Text className="ride-passengers-title text-muted">

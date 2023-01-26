@@ -8,7 +8,6 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-
 const RideDetails = () => {
   const location = useLocation();
   const [users] = useDbData("/users");
@@ -18,7 +17,6 @@ const RideDetails = () => {
   const startAddress = ride.start.address;
 
   const endAddress = ride.end.address;
-
 
   const convertTime = (time) => {
     var oldFormatTimeArray = time.split(":");
@@ -38,7 +36,6 @@ const RideDetails = () => {
     var newFormatTime = hours + ":" + min + " " + AMPM;
     return newFormatTime;
   };
-
 
   const populatePassengers = () => {
     let populatePassengers = ride.passengers.map((passengerId) => (
@@ -68,12 +65,15 @@ const RideDetails = () => {
         <div className="col">
           <Card bg="light">
             <Card.Header>
-            <Button className="close" variant="danger" onClick={() => navigate("/")}>
-                  Close
-                </Button>
+              <Button
+                className="close"
+                variant="danger"
+                onClick={() => navigate("/")}
+              >
+                Close
+              </Button>
               <Card.Title className="ride-header text-muted">
                 Destination: {endAddress}
-                
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -94,7 +94,7 @@ const RideDetails = () => {
               <Card.Text className="ride-available-seats text-muted">
                 <FcAutomotive size={28} />
                 <span>Seats available:</span> <p>&nbsp;</p>
-                {ride.availableSeats} / 4
+                {ride.availableSeats} / {ride.totalSeats}
               </Card.Text>
               <hr />
             </Card.Body>

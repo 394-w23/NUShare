@@ -49,7 +49,8 @@ const Create = () => {
         date: date,
         time: time,
         passengers: [user.uid],
-        availableSeats: numSeats,
+        totalSeats: numSeats,
+        availableSeats: numSeats - 1,
       };
       setError("");
       updateData({ ["/rides/" + uuidv4()]: ride });
