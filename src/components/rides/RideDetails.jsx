@@ -41,12 +41,21 @@ const RideDetails = () => {
     return populatePassengers;
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="container mb-5">
       {typeof users != "undefined" && users != null && (
         <div className="col">
           <Card bg="light">
             <Card.Header>
+              <Button
+                className="close"
+                variant="danger"
+                onClick={() => navigate("/")}
+              >
+                Close
+              </Button>
               <Card.Title className="ride-header text-muted">
                 Destination: {ride.end.address}
               </Card.Title>
@@ -69,7 +78,7 @@ const RideDetails = () => {
               <Card.Text className="ride-available-seats text-muted">
                 <FcAutomotive size={28} />
                 <span>Seats available:</span> <p>&nbsp;</p>
-                {ride.availableSeats} / 4
+                {ride.availableSeats} / {ride.totalSeats}
               </Card.Text>
               <hr />
               <Button

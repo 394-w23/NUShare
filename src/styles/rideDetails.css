@@ -16,8 +16,8 @@
 
 .profile-images {
   width: initial;
-  height: auto;
-  border-radius: 50%;
+  height: 100%;
+  align-items: center;
 }
 
 .passenger-col {
@@ -29,8 +29,11 @@
 }
 
 .profile-info {
-  padding-top: 10px;
   padding-left: 10px;
+  display: flex;
+  align-items: center;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 .profile-info span {
@@ -64,4 +67,8 @@
 .chat-button {
   color: white;
   font-weight: bold;
+}
+
+button.close {
+  float: right;
 }

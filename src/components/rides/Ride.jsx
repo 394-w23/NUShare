@@ -30,7 +30,7 @@ const Ride = ({ id, ride }) => {
   };
 
   const handleLeave = (userId) => {
-    const seats = ride.availableSeats + 1;
+    const seats = ride.availableSeats;
     const updatedPassenger = ride.passengers;
     for (var i = 0; i < updatedPassenger.length; i++) {
       if (updatedPassenger[i] === userId) {
@@ -39,13 +39,13 @@ const Ride = ({ id, ride }) => {
     }
     const updatedRide = {
       ...ride,
-      availableSeats: seats,
+      availableSeats: seats + 1,
       passengers: updatedPassenger,
     };
-    updateData({ ["/rides/" + id]: updatedRide });
-    if (seats === 4) {
+    if (updatedPassenger.length === 0) {
       updateData({ ["/rides/" + id]: null });
-      updateData({ ["/chats/" + id]: null });
+    } else {
+      updateData({ ["/rides/" + id]: updatedRide });
     }
   };
 
@@ -74,7 +74,7 @@ const Ride = ({ id, ride }) => {
         <Card.Text className="ride-available-seats text-muted">
           <FcAutomotive size={28} />
           <span>Seats available:</span> <p>&nbsp;</p>
-          {ride.availableSeats} / 4
+          {ride.availableSeats} / {ride.totalSeats}
         </Card.Text>
         <hr />
         <Card.Text className="ride-passengers-title text-muted">
