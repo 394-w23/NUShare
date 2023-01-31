@@ -7,7 +7,11 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "cy:open": "cypress open --e2e",
+    "em:start": "firebase emulators:start --import=./saved-data --export-on-exit",
+    "em:exec": "firebase emulators:exec --import=./saved-data 'npm start'",
+    "em:execui": "firebase emulators:exec --ui --import=./saved-data 'npm start'"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
@@ -27,6 +31,7 @@
     "@vitest/coverage-c8": "^0.25.8",
     "@vitest/ui": "^0.25.8",
     "c8": "^7.12.0",
+    "cypress": "^12.4.1",
     "jsdom": "^20.0.3",
     "vite": "^4.0.0"
   }

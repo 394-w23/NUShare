@@ -32,7 +32,7 @@ const Login = () => {
       </div>
       <div className="login-info-container">
         <div>
-          <h1 className="login-title">
+          <h1 className="login-title" data-cy="login-title">
             Welcome to NUShare <FcAutomotive size={42} />
           </h1>
 
