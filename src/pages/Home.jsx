@@ -16,7 +16,7 @@ const Home = () => {
   const [searchStart, setSearchStart] = useState("");
   const [searchEnd, setSearchEnd] = useState("");
   const [searchDate, setSearchDate] = useState("");
-  
+
   if (!rides)
     return <h4 className="text-muted">There are currently no rides</h4>;
   if (!user) return <h4 className="text-muted">Loading user profile...</h4>;
@@ -53,7 +53,7 @@ const Home = () => {
   //First check if any ride needs to be deleted from the db because of date
   let filteredRides = Object.entries(rides).forEach(([idx, ride]) => {
     if (ride.date < getTodaysDate()) {
-      updateData({ ["/chats" + idx]: null })
+      updateData({ ["/chats/" + idx]: null });
       updateData({ ["/rides/" + idx]: null });
     }
   });
@@ -65,6 +65,8 @@ const Home = () => {
       (!searchEnd || ride[1].end.address === searchEnd) &&
       (!searchDate || ride[1].date === searchDate)
   );
+
+  console.log(filteredRides);
 
   return (
     <div className="container mb-5">
