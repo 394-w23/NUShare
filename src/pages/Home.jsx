@@ -66,8 +66,6 @@ const Home = () => {
       (!searchDate || ride[1].date === searchDate)
   );
 
-  console.log(filteredRides);
-
   return (
     <div className="container mb-5">
       <Form.Text className="text-muted me-4">Where?</Form.Text>
