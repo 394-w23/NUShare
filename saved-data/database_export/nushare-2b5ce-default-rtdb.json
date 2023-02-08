@@ -64,10 +64,13 @@
       "totalSeats": 6
     },
     "5ba1beae-5b85-48c3-956b-6bd23eabcd33": {
-      "availableSeats": 2,
+      "availableSeats": 1,
       "date": "2023-06-30",
       "end": { "address": "Chicago Midway International Airport (MDW)" },
-      "passengers": ["mWWwXj6w8NTQe9gjXxMCkwRSrve5"],
+      "passengers": [
+        "mWWwXj6w8NTQe9gjXxMCkwRSrve5",
+        "aLEXXj6w8NTQe9gjXxMCkwRSrve5"
+      ],
       "start": { "address": "South Campus" },
       "time": "00:30",
       "totalSeats": 3
@@ -79,6 +82,11 @@
       "displayName": "Test User",
       "email": "test@test.com",
       "profilePic": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c"
+    },
+    "aLEXXj6w8NTQe9gjXxMCkwRSrve5": {
+      "displayName": "Alex Alligator",
+      "email": "alex@test.com",
+      "profilePic": "https://img.freepik.com/free-vector/cute-crocodile-waving-hand-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated_138676-6015.jpg?w=2000"
     }
   }
 }
