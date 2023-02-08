@@ -4,7 +4,7 @@ import {
   onValue,
   ref,
   update,
-  connectDatabaseEmulator,
+  connectDatabaseEmulator
 } from "firebase/database";
 import {
   getAuth,
@@ -25,11 +25,27 @@ const firebaseConfig = {
   storageBucket: "nushare-2b5ce.appspot.com",
   messagingSenderId: "1042725371418",
   appId: "1:1042725371418:web:d170d6f2a611dde5ad9ba3",
+  REACT_APP_EMULATE: true
 };
 
 const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 const database = getDatabase(firebase);
+
+if (true) {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectDatabaseEmulator(database, "127.0.0.1", 9001);
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "fHCs8qfTTUWGla9wWl3KvqqsNB72", "email": "mrdankpotato123@gmail.com", "displayName":"MrDankPotato", "email_verified": true}'
+  ));
+}
+
+//Test for signing in with cypress
+export const signInCy = async () => {
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "fHCs8qfTTUWGla9wWl3KvqqsNB72", "email": "mrdankpotato123@gmail.com", "displayName":"MrDankPotato", "email_verified": true}'
+  ));
+}
 
 if (import.meta.env.NODE_ENV !== "production") {
   connectAuthEmulator(auth, "http://127.0.0.1:9099");

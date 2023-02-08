@@ -9,3 +9,4 @@ describe("NUShare Tests", () => {
     cy.get("[data-cy=login-title]").should("contain", "Welcome to NUShare");
   });
 });
+

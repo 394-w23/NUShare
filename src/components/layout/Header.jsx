@@ -11,6 +11,7 @@ const SignOutButton = () => (
   <button
     className="ml-5 p-2 w-10 btn btn-primary sign-button"
     onClick={signOut}
+    data-cy="sign-out"
   >
     Sign out
   </button>
