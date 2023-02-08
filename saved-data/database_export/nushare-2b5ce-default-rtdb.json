@@ -9,14 +9,14 @@
       "id": "200ee784-2dbd-2610-ba58-4c46f5d09ea4",
       "messages": [
         {
-          "date": "2023-01-25",
+          "date": "2023-06-25",
           "message": "For anyone joining, please be on time!",
           "name": "Test User",
           "photo": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c",
           "sender": "mWWwXj6w8NTQe9gjXxMCkwRSrve5"
         },
         {
-          "date": "2023-01-25",
+          "date": "2023-06-25",
           "message": "Thanks",
           "name": "Test User",
           "photo": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c",
@@ -29,21 +29,21 @@
       "id": "5ba1beae-5b85-48c3-956b-6bd23eabcd33",
       "messages": [
         {
-          "date": "2023-01-30",
+          "date": "2023-06-30",
           "message": "Hello!",
           "name": "Test User",
           "photo": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c",
           "sender": "mWWwXj6w8NTQe9gjXxMCkwRSrve5"
         },
         {
-          "date": "2023-01-30",
+          "date": "2023-06-30",
           "message": "I have two spots left for my ride",
           "name": "Test User",
           "photo": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c",
           "sender": "mWWwXj6w8NTQe9gjXxMCkwRSrve5"
         },
         {
-          "date": "2023-01-30",
+          "date": "2023-06-30",
           "message": "hmu",
           "name": "Test User",
           "photo": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c",
@@ -56,7 +56,7 @@
   "rides": {
     "200ee784-2dbd-2610-ba58-4c46f5d09ea4": {
       "availableSeats": 5,
-      "date": "2023-01-30",
+      "date": "2023-06-30",
       "end": { "address": "Chicago O'Hare International Airport (ORD)" },
       "passengers": ["mWWwXj6w8NTQe9gjXxMCkwRSrve5"],
       "start": { "address": "South Campus" },
@@ -65,7 +65,7 @@
     },
     "5ba1beae-5b85-48c3-956b-6bd23eabcd33": {
       "availableSeats": 2,
-      "date": "2023-01-30",
+      "date": "2023-06-30",
       "end": { "address": "Chicago Midway International Airport (MDW)" },
       "passengers": ["mWWwXj6w8NTQe9gjXxMCkwRSrve5"],
       "start": { "address": "South Campus" },
