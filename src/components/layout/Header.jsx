@@ -41,7 +41,7 @@ const Header = () => {
             </Navbar.Collapse>
           )}
           {user ? (
-            <div className="display-name">
+            <div className="display-name" data-cy="welcome-user">
               Welcome <b className="display-name-subheader">{user.displayName}</b>
             </div>
           ) : (
