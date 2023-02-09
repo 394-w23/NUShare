@@ -89,6 +89,7 @@ const Home = () => {
         label="To MDW Airport"
         name="group1"
         type="radio"
+        data-cy="toMDW"
         onClick={() => handleToMDWAirport()}
       />
       <Form.Check
@@ -123,7 +124,7 @@ const Home = () => {
       )}
       {filteredRides &&
         filteredRides.map((ride, idx) => (
-          <div key={idx} className="mb-5">
+          <div key={idx} className="mb-5" data-cy="filtered-rides">
             <Ride ride={ride[1]} id={ride[0]} />
           </div>
         ))}
