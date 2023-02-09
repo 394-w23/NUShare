@@ -74,6 +74,15 @@
       "start": { "address": "South Campus" },
       "time": "00:30",
       "totalSeats": 3
+    },
+    "aLEXbeae-5b85-48c3-956b-6bd23eabcd33": {
+      "availableSeats": 2,
+      "date": "2023-06-29",
+      "end": { "address": "Chicago Midway International Airport (MDW)" },
+      "passengers": ["aLEXXj6w8NTQe9gjXxMCkwRSrve5"],
+      "start": { "address": "South Campus" },
+      "time": "11:15",
+      "totalSeats": 3
     }
   },
   "seats": [3, 4, 5, 6],

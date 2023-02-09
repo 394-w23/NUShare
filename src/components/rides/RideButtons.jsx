@@ -32,6 +32,7 @@ const RideButtons = ({ user, ride, rideId, handleLeave, handleJoin }) => {
             <Button
               className="ride-button"
               variant="danger"
+              data-cy="ride-leave"
               onClick={() => handleLeave(user.uid)}
             >
               <Card.Text className="ride-leave-button">
@@ -46,6 +47,7 @@ const RideButtons = ({ user, ride, rideId, handleLeave, handleJoin }) => {
               <Button
                 className="ride-button"
                 variant="success"
+                data-cy="ride-join"
                 onClick={() => handleJoin(user.uid)}
               >
                 <Card.Text className="ride-join-button">
