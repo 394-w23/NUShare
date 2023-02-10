@@ -6,5 +6,8 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl: "http://localhost:5173",
+    env: {
+      NODE_ENV: process.env.NODE_ENV,
+    },
   },
 });
