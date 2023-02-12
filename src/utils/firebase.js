@@ -31,7 +31,7 @@ const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 const database = getDatabase(firebase);
 
-if (import.meta.env.NODE_ENV !== "production") {
+if (process.env !== "production") {
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectDatabaseEmulator(database, "127.0.0.1", 9001);
   signInWithCredential(
@@ -96,4 +96,4 @@ export const signInWithGoogle = () => {
 };
 
 const firebaseSignOut = () => signOut(getAuth(firebase));
-export { firebaseSignOut as signOut };
+export { firebaseSignOut as signOut, database };
