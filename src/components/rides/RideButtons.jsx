@@ -16,6 +16,7 @@ const RideButtons = ({ user, ride, rideId, handleLeave, handleJoin }) => {
             <Button
               className="ride-button"
               variant="info"
+              data-cy={rideId}
               onClick={() =>
                 navigate("/ride/" + rideId, {
                   state: { id: user.uid, ride: ride, rideId: rideId },

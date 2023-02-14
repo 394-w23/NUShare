@@ -50,6 +50,7 @@ const RideDetails = () => {
               <Button
                 className="close"
                 variant="danger"
+                data-cy="close-button"
                 onClick={() => navigate("/")}
               >
                 Close
@@ -83,6 +84,7 @@ const RideDetails = () => {
                 size="md"
                 className="chat-button"
                 variant="success"
+                data-cy="chat-button"
                 onClick={handleChatButton}
               >
                 <FcSms size={28} /> Chat Board
