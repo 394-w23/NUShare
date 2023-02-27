@@ -1,1 +1,36 @@
-{"kind":"identitytoolkit#DownloadAccountResponse","users":[{"localId":"mWWwXj6w8NTQe9gjXxMCkwRSrve5","createdAt":"1675139235382","lastLoginAt":"1675141874194","displayName":"Test User","photoUrl":"https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c","passwordHash":"fakeHash:salt=fakeSaltviAw5hcZwpecBtwtLm5y:password=test123","salt":"fakeSaltviAw5hcZwpecBtwtLm5y","passwordUpdatedAt":1675141844633,"providerUserInfo":[{"providerId":"google.com","rawId":"mWWwXj6w8NTQe9gjXxMCkwRSrve5","federatedId":"mWWwXj6w8NTQe9gjXxMCkwRSrve5","email":"test@test.com"},{"providerId":"password","email":"test@test.com","federatedId":"test@test.com","rawId":"test@test.com","displayName":"Test User","photoUrl":"https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c"}],"validSince":"1675141844","email":"test@test.com","emailVerified":true,"disabled":false,"lastRefreshAt":"2023-01-31T05:11:14.194Z"}]}
+{
+  "kind": "identitytoolkit#DownloadAccountResponse",
+  "users": [
+    {
+      "localId": "mWWwXj6w8NTQe9gjXxMCkwRSrve5",
+      "createdAt": "1675139235382",
+      "lastLoginAt": "1675892440337",
+      "displayName": "Test User",
+      "photoUrl": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c",
+      "passwordHash": "fakeHash:salt=fakeSaltviAw5hcZwpecBtwtLm5y:password=test123",
+      "salt": "fakeSaltviAw5hcZwpecBtwtLm5y",
+      "passwordUpdatedAt": 1675892315561,
+      "providerUserInfo": [
+        {
+          "providerId": "google.com",
+          "rawId": "mWWwXj6w8NTQe9gjXxMCkwRSrve5",
+          "federatedId": "mWWwXj6w8NTQe9gjXxMCkwRSrve5",
+          "email": "test@test.com"
+        },
+        {
+          "providerId": "password",
+          "email": "test@test.com",
+          "federatedId": "test@test.com",
+          "rawId": "test@test.com",
+          "displayName": "Test User",
+          "photoUrl": "https://lh3.googleusercontent.com/a/AEdFTp7yeD3MjI-rptpBqrirDMJXyf9-xMEwY-4Ultjc=s96-c"
+        }
+      ],
+      "validSince": "1675892315",
+      "email": "test@test.com",
+      "emailVerified": true,
+      "disabled": false,
+      "lastRefreshAt": "2023-02-08T21:40:40.337Z"
+    }
+  ]
+}
