@@ -43,9 +43,9 @@ const Ride = ({ id, ride }) => {
       passengers: updatedPassenger,
     };
 
-    console.log(updatedRide)
+    console.log(updatedRide);
     if (updatedPassenger.length === 0) {
-      updateData({ ["/chats/" + id]: null })
+      updateData({ ["/chats/" + id]: null });
       updateData({ ["/rides/" + id]: null });
     } else {
       updateData({ ["/rides/" + id]: updatedRide });
@@ -53,7 +53,7 @@ const Ride = ({ id, ride }) => {
   };
 
   return (
-    <Card bg="light">
+    <Card bg="light" data-cy={id}>
       <Card.Header>
         <Card.Title className="ride-header text-muted">
           Destination: {ride.end.address}
@@ -66,17 +66,19 @@ const Ride = ({ id, ride }) => {
         </Card.Text>
         <Card.Text className="ride-pickup-date text-muted">
           <FcPlanner size={28} />
-          <span>Pickup Date:</span> <p>&nbsp;</p>
+          <span>Pickup Date:</span> &nbsp;
           {moment(ride.date).format("dddd, MMM D YYYY")}
         </Card.Text>
         <Card.Text className="ride-pickup-time text-muted">
           <FcClock size={28} />
-          <span>Pickup Time:</span> <p>&nbsp;</p>
+          <span>Pickup Time:</span>
+          &nbsp;
           {convertTime(ride.time)}
         </Card.Text>
         <Card.Text className="ride-available-seats text-muted">
           <FcAutomotive size={28} />
-          <span>Seats available:</span> <p>&nbsp;</p>
+          <span>Seats available:</span>
+          &nbsp;
           {ride.availableSeats} / {ride.totalSeats}
         </Card.Text>
         <hr />
@@ -85,7 +87,11 @@ const Ride = ({ id, ride }) => {
         </Card.Text>
         <Card.Text className="ride-passengers-grid">
           {ride.passengers.map((userId, idx) => (
-            <div key={idx} className="ride-passengers-container">
+            <div
+              key={idx}
+              className="ride-passengers-container"
+              data-cy={userId}
+            >
               <div className="ride-passengers-image">
                 <img
                   src={users[userId].profilePic}

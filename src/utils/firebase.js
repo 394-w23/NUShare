@@ -96,4 +96,4 @@ export const signInWithGoogle = () => {
 };
 
 const firebaseSignOut = () => signOut(getAuth(firebase));
-export { firebaseSignOut as signOut };
+export { firebaseSignOut as signOut, database };

@@ -18,6 +18,7 @@ const Login = () => {
     <button
       className="ml-5 p-2 w-75 btn btn-light login-button"
       onClick={signInWithGoogle}
+      data-cy="sign-in"
     >
       SIGN IN
     </button>

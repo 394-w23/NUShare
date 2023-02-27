@@ -14,7 +14,15 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+import { database } from "../../src/utils/firebase";
+import { ref, set } from "firebase/database";
+import * as initialData from "../../saved-data/database_export/nushare-2b5ce-default-rtdb.json";
+
+beforeEach(() => {
+  set(ref(database), initialData);
+});

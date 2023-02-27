@@ -61,11 +61,12 @@ const Chat = () => {
           <Form.Control
             placeholder="Message"
             value={message}
+            data-cy="input-box"
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={(e) => handleMessageUploadEnter(e)}
           />
         </InputGroup>
-        <Button className="ms-2" variant="light" onClick={handleMessageUpload}>
+        <Button className="ms-2" variant="light" onClick={handleMessageUpload} data-cy="message-send">
           <FcRight size={28} />
         </Button>
       </div>
