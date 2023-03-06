@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "nushare-2b5ce"
-  }
+  },
+  "targets": {
+    "nushare-2b5ce": {
+      "hosting": {
+        "development": [
+          "nushare-development"
+        ],
+        "production": [
+          "nushare-2b5ce"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
