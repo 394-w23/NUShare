@@ -12,7 +12,8 @@ const SignOutButton = () => (
     className="ml-5 p-2 w-10 btn btn-primary sign-button"
     onClick={signOut}
   >
-    Sign out
+    {/* Sign out */}
+    Intentional bug
   </button>
 );
 
@@ -42,7 +43,8 @@ const Header = () => {
           )}
           {user ? (
             <div className="display-name" data-cy="welcome-user">
-              Welcome <b className="display-name-subheader">{user.displayName}</b>
+              Welcome{" "}
+              <b className="display-name-subheader">{user.displayName}</b>
             </div>
           ) : (
             <div></div>
