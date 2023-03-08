@@ -12,8 +12,7 @@ const SignOutButton = () => (
     className="ml-5 p-2 w-10 btn btn-primary sign-button"
     onClick={signOut}
   >
-    {/* Sign out */}
-    Intentional bug
+    Sign out
   </button>
 );
 
