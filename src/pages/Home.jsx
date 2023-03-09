@@ -76,6 +76,7 @@ const Home = () => {
         name="group1"
         type="radio"
         data-cy="toORD"
+        data-testid="toORD"
         onClick={() => handleToORDAirport()}
       />
       <Form.Check
