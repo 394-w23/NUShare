@@ -44,10 +44,10 @@ const Chat = () => {
   };
 
   const handleMessageUploadEnter = (e) => {
-    if (e.keyCode === 13){
-      handleMessageUpload()
+    if (e.keyCode === 13) {
+      handleMessageUpload();
     }
-  }
+  };
 
   if (!chat) return <h4 className="text-muted">Loading chat...</h4>;
 
@@ -66,7 +66,12 @@ const Chat = () => {
             onKeyDown={(e) => handleMessageUploadEnter(e)}
           />
         </InputGroup>
-        <Button className="ms-2" variant="light" onClick={handleMessageUpload} data-cy="message-send">
+        <Button
+          className="ms-2"
+          variant="light"
+          onClick={handleMessageUpload}
+          data-cy="message-send"
+        >
           <FcRight size={28} />
         </Button>
       </div>

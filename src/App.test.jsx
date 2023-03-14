@@ -26,7 +26,7 @@ describe("without authentication", () => {
   });
 });
 
-describe("after authentication", () => {
+describe("Home page after authentication", () => {
   beforeEach(() => {
     useProfile.mockReturnValue([testProfile]);
     when(useDbData).calledWith("/rides").mockReturnValue([testData["rides"]]);
@@ -35,7 +35,12 @@ describe("after authentication", () => {
     render(<App />);
   });
 
-  it("verifies user is signed in", () => {
+  it("verifies user name displays", () => {
+    expect(screen.getByText(`Welcome`)).toBeDefined();
+    expect(screen.getByText(`${testProfile.displayName}`)).toBeDefined();
+  });
+
+  it("verifies sign out available", () => {
     expect(screen.getByText("Sign out")).toBeDefined();
   });
 
