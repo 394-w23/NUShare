@@ -11,6 +11,11 @@ describe("NUShare Tests", () => {
         cy.get("[data-cy=close-button]").should("contain", "Close");
 
         cy.get("[data-cy=chat-button]").should("contain", "Chat Board");
+
+        cy.contains("Available Seats: 5");
+        cy.contains("Date: 2023-06-30");
+        cy.contains("Start Address: South Campus");
+        cy.contains("End Address: Chicago O'Hare International Airport (ORD)");
       });
 });
   
